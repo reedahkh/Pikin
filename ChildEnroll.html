@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+<title>Pikin - Child Enrollment</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+<div id="header-holder" class="inner-header">
+    <div class="bg-animation"></div>
+    <nav id="nav" class="navbar navbar-default navbar-full">
+        <div class="container-fluid">
+            <div class="container container-nav">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <button aria-expanded="false" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="logo-holder" href="index.html">
+                                <div class="logo" style="width:62px;height:18px"></div>
+                            </a>
+                        </div>
+                        <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="booking.html">Family DayCare Educator Booking Service</a><li>
+                                <li><a class="login-button" href="signin.html">Login/Sign-Up</a></li>
+                                <li class="support-button-holder support-dropdown">
+                                    <a class="support-button" href="#">Support</a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#"><i class="fa fa-phone"></i>Call +61-411-240-300</a></li>
+                                      <li><a href="#"><i class="fa fa-book"></i>Email info@pikin.com.au</a></li>
+                                      <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="page-head" class="container-fluid inner-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="page-title">Child Enrollment Form</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="page-content" class="container-fluid">
+    <div class="container">
+        <form id="childenrollment">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="signin-signup-form">
+                <div class="form-items">
+                    <div class="form-title">Child's Details</div>
+                        <div class="row">
+                            <div class="col-md-6 form-text">
+                                <input type="text" name="firstname" placeholder="First name" required>
+                            </div>
+                            <div class="col-md-6 form-text">
+                                <input type="text" name="lastname" placeholder="Last name" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-text">
+                                <span class="text-only">Select Date of Birth</span>
+                            </div>
+                            <div class="col-md-8 form-text">
+                            <input type="date" name="dob" placeholder="Date of Birth" required>
+                            </div>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Child's Gender</span>
+                            <input type="radio" name="gender" class="hno-radiobtn" id="gender1"><label for="gender1">Male</label>
+                            <input type="radio" name="gender" class="hno-radiobtn" id="gender2"><label for="gender2">Female</label>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="address" placeholder="Address" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="crn" placeholder="Child's CenterLink Reference Number" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="languages" placeholder="Languages Spoken By Child">
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="background" placeholder="Child's Cultural Background">
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is your child of Aboriginal or Torres Strait Islander descent?</span>
+                            <input type="radio" name="descent" class="hno-radiobtn" id="descent1"><label for="descent1">Yes</label>
+                            <input type="radio" name="descent" class="hno-radiobtn" id="descent2"><label for="descent2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this child using any other Early Childhood Education and Care service, such as Family Day Care, In Home Care, Long Day Care, Outside School Hours Care, Vacation Care, Kindergarten, or Occasional Care?</span>
+                            <input type="radio" name="otherservice" class="hno-radiobtn" id="otherservice1"><label for="otherservice1">Yes</label>
+                            <input type="radio" name="otherservice" class="hno-radiobtn" id="otherservice2"><label for="otherservice2">No</label>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="services" placeholder="If yes, please provide name of service">
+                        </div>
+                        <div class="form-text">
+                            <span class="text-only">How many of your children are attending Child Care Benefit (CCB) and Child Care Rebate (CCR) approved service?</span>
+                            <input type="number" name="howmany" placeholder="">
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this child attending school?</span>
+                            <input type="radio" name="attending" class="hno-radiobtn" id="attending1"><label for="attending1">Yes</label>
+                            <input type="radio" name="attending" class="hno-radiobtn" id="attending2"><label for="attending2">No</label>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="schname" placeholder="School Name">
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="schaddy" placeholder="School Address">
+                        </div>
+                    <br><br>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="signin-signup-form">
+                <div class="form-items">
+                    <div class="form-title">CONTACT DETAILS</div>
+                    <div class="form-title">Parent/Guardian 1</div>
+                        <div class="form-text">
+                            <input type="text" name="parentname" placeholder="Fullname" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="relation" placeholder="Relationship to Child" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="parentcrn" placeholder="CRN" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-text">
+                                <span class="text-only">Select Date of Birth</span>
+                            </div>
+                            <div class="col-md-8 form-text">
+                            <input type="date" name="dob2" placeholder="Date of Birth" required>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="address2" placeholder="Address" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="phone1" placeholder="Home Phone" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="mobile1" placeholder="Mobile Phone" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="work1" placeholder="Work Phone" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="others1" placeholder="Other Contact Numbers" required>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to collect the child?</span>
+                            <input type="radio" name="collect1" class="hno-radiobtn" id="collect1-1"><label for="collect1-1">Yes</label>
+                            <input type="radio" name="collect1" class="hno-radiobtn" id="collect1-2"><label for="collect1-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to medical treatment?</span>
+                            <input type="radio" name="medical1" class="hno-radiobtn" id="medical1-1"><label for="medical1-1">Yes</label>
+                            <input type="radio" name="medical1" class="hno-radiobtn" id="medical1-2"><label for="medical1-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to the administration of medication?</span>
+                            <input type="radio" name="administer1" class="hno-radiobtn" id="administer1-1"><label for="administer1-1">Yes</label>
+                            <input type="radio" name="administer1" class="hno-radiobtn" id="administer1-2"><label for="administer1-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to the Educator taking the child away from the education and care residence (such as for an excursion)?</span>
+                            <input type="radio" name="excursion1" class="hno-radiobtn" id="excursion1-1"><label for="excursion1-1">Yes</label>
+                            <input type="radio" name="excursion1" class="hno-radiobtn" id="excursion1-2"><label for="excursion1-2">No</label>
+                        </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="signin-signup-form">
+                <div class="form-items">
+                    <div class="form-title">.</div>
+                    <div class="form-title">Parent/Guardian 2</div>
+                        <div class="form-text">
+                            <input type="text" name="parentname2" placeholder="Fullname">
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="relation2" placeholder="Relationship to Child">
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="parentcrn2" placeholder="CRN">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-text">
+                                <span class="text-only">Select Date of Birth</span>
+                            </div>
+                            <div class="col-md-8 form-text">
+                            <input type="date" name="dob3" placeholder="Date of Birth">
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="address3" placeholder="Address">
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="phone2" placeholder="Home Phone">
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="mobile2" placeholder="Mobile Phone">
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="work2" placeholder="Work Phone">
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="others2" placeholder="Other Contact Numbers">
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to collect the child?</span>
+                            <input type="radio" name="collect2" class="hno-radiobtn" id="collect2-1"><label for="collect2-1">Yes</label>
+                            <input type="radio" name="collect2" class="hno-radiobtn" id="collect2-2"><label for="collect2-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to medical treatment?</span>
+                            <input type="radio" name="medical2" class="hno-radiobtn" id="medical2-1"><label for="medical2-1">Yes</label>
+                            <input type="radio" name="medical2" class="hno-radiobtn" id="medical2-2"><label for="medical2-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to the administration of medication?</span>
+                            <input type="radio" name="administer2" class="hno-radiobtn" id="administer2-1"><label for="administer2-1">Yes</label>
+                            <input type="radio" name="administer2" class="hno-radiobtn" id="administer2-2"><label for="administer2-2">No</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Is this person authorised to consent to the Educator taking the child away from the education and care residence (such as for an excursion)?</span>
+                            <input type="radio" name="excursion2" class="hno-radiobtn" id="excursion2-1"><label for="excursion2-1">Yes</label>
+                            <input type="radio" name="excursion2" class="hno-radiobtn" id="excursion2-2"><label for="excursion2-2">No</label>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12" "text-center">
+                <div class="signin-signup-form">
+                    <div class="form-items">
+                        <div class="form-text text-holder">
+                            <span class="text-only">Family Status</span><br>
+                            <input type="checkbox" name="status1" id="both-parent"><label for="both-parent">Both Parents at Home</label>
+                            <input type="checkbox" name="status2" id="sole-parent"><label for="sole-parent">Sole Parent</label>
+                            <input type="checkbox" name="status3" id="shared-custody"><label for="shared-custody">Shared Custody</label>
+                            <input type="checkbox" name="status4" id="others"><label for="others">Others</label>
+                        </div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Are there any court orders, parenting plans or parenting orders regarding this child?</span>
+                            <input type="radio" name="courtorder" class="hno-radiobtn" id="courtorder1"><label for="courtorder1">Yes</label>
+                            <input type="radio" name="courtorder" class="hno-radiobtn" id="courtorder2"><label for="courtorder2">No</label>
+                        </div><br>
+                        <div class="form-title">Health and Medical Information</div>
+                        <div class="form-text">
+                            <input type="number" name="medicarenum" placeholder="Child's Medicare Number" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-text">
+                                <span class="text-only">Select Expiry Date</span>
+                            </div>
+                            <div class="col-md-8 form-text">
+                            <input type="date" name="expiry" placeholder="Expiry Date" required>
+                            </div>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="medicalservice" placeholder="Child's Medical Service Name" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="docname" placeholder="Name of Child's Doctor" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="docaddy" placeholder="Address of Child's Doctor" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="number" name="docphone" placeholder="Phone number of Child's Doctor" required>
+                        </div><br>
+                        <div class="form-title">Special Requirements</div>
+                        <div class="form-text text-holder">
+                            <span class="text-only">Does this child have any requirements, such as any cultural, religious or dietary requirements, or additional needs?</span>
+                            <input type="radio" name="requirement" class="hno-radiobtn" id="requirement1"><label for="requirement1">Yes</label>
+                            <input type="radio" name="requirement" class="hno-radiobtn" id="requirement2"><label for="requirement2">No</label>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="requirement2" placeholder="If yes, provide details" required>
+                        </div>
+                        <div class="form-button" align="left">
+                            <button id="submit" type="submit" class="ybtn ybtn-purple">SUBMIT YOUR ENTRIES</button>
+                            <button id="submit" type="reset" class="ybtn ybtn-purple">RESET</button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </form>
+    </div>
+</div>
+<div id="footer" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-3">
+                <div class="address-holder">
+                    <h4>About Us</h4>
+                    <p>Pikin is Australia's largest online family day care educator booking platform, offering you affordable and quality early childhood educators near you. </p>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <div class="footer-menu-holder">
+                    <h4>New Educators</h4>
+                    <ul class="footer-menu">
+                        <li><a href="join.html">Join Pikin</a></li>
+                        <h4>Exisiting Educators</h4>
+                        <li><a href="#">Partner Centers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-2 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Partner with us</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#">Affiliates</a></li>
+                        <li><a href="#">FDC Schemes</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="footer-menu-holder">
+                    <h4>Parents</h4>
+                    <ul class="footer-menu">
+                        <li><a href="help.html">Help</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="signup.html">Sign Up/Log In</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-1 col-md-1">
+                <div class="social-menu-holder">
+                    <h4>Get the Pikin mobile app</h4>
+                    <ul class="footer-menu">
+                        <a href="http://play.google.com"><img class="photo" src="images/mobileapp.jpg" alt=""></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-slider.min.js"></script>
+<script src="js/slick.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
