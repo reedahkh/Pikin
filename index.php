@@ -26,7 +26,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <a class="logo-holder" href="index.php">
-                                <div class="logo" style="width:100px;height:80px"></div>
+                                <div class="logo" style="width:150px;height:80px"></div>
                             </a>
                         </div>
                         <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
@@ -106,14 +106,14 @@
                         <span>near you!</span>
                     </div>
                     <div class="educators-search-holder">
-                        <form id="educators-search" action="listing.php" method="POST">
+                        <form id="educators-search" action="search.php" method="POST">
                             <input id="educators-text" type="text" name="postcode" placeholder="Enter your postcode.." />
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
                             <?php 
                             $reasons = array("postcode" => "You entered an invalid postcode","suburb" => "Suburb does not exist" );
-                            if ($_GET ["searchFailed"]) {
+                            if (isset($_GET["searchFailed"])) {
                                 echo $reasons[$_GET["reason"]];
                             }
 
@@ -135,6 +135,74 @@
         </div>
     </div>
 </div>
+
+<!--POPULAR PEOPLE-->
+
+<div class="container-fluid" style="background: #f7f7f7">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row-title">Top Educators</div>
+            </div>
+        </div>
+        <div class="row">
+            <?php
+                include ("dbconnection.php");
+                
+                $popular = "SELECT * from educators LIMIT 3";
+                $query = mysqli_query ($connection, $popular);
+
+                while ($row = mysqli_fetch_assoc($query)) {
+            ?>
+            <div class="col-sm-6 col-md-4">
+                <div class="pricing-box pricing-color1">
+                    <div class="pricing-content">
+                        <div class="pricing-icon" style="background: url(images/<?=$row['avatar']?>);background-size: contain;">
+                        </div>
+                        <div class="pricing-title"><?=$row['firstname']?> <?=$row['lastname']?></div>
+                        <div class="pricing-details">
+                            <br>
+                            <center>
+                                <span style="font-size: 16px;">
+                                    <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $row["suburb"]; ?>
+                                </span>
+                                 <div style="margin-top: 10px">
+                                  <?php
+                                    $user_rating = $row['rating'];
+
+                                    for ($available_rating = 0; $available_rating < $user_rating; $available_rating++) { 
+                                  ?>
+                                  <i class="fa fa-star" style="color: orange"></i>
+                                  <?php
+                                    }
+
+                                    $no_rating = 5 - $user_rating;
+                                    
+                                    for ($absent_rating = 0; $absent_rating < $no_rating; $absent_rating++) { 
+                                  ?>
+                                  <i class="fa fa-star" style="color: #ddd"></i>
+                                  <?php
+                                    }
+                                  ?>
+                                </div>
+                            </center>
+                        </div>
+                            <br>
+
+                        <div class="pricing-link">
+                            <a class="ybtn" href="#">Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+
+
 <div id="info" class="container-fluid">
     <div class="container">
         <div class="row">
@@ -146,6 +214,7 @@
         </div>
     </div>
 </div>
+
 
 <!--Services-->
 <!--Are you ready-->
