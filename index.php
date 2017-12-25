@@ -259,7 +259,7 @@
                             </ul>
                         </div>
                         <div class="pricing-link">
-                            <a class="ybtn" href="signin.html">Register Here</a>
+                            <a class="ybtn" href="signin.php">Register Here</a>
                         </div>
                     </div>
                 </div>
@@ -369,7 +369,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <div class="text-purple-light">Are you ready?</div>
+                <div class="text-purple-light"><strong>Are you an Educator?</strong></div>
                 <div class="text-purple-dark">Join Australia’s fastest growing family day care educator booking service. </div>
             </div>
             <div class="col-sm-12 col-md-6">
