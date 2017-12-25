@@ -12,7 +12,7 @@ $paymentmethod = $_POST ['paymentmethod'];
 $hash = md5(rand (0,1000));
 
 //Executes the query
-mysqli_query ($connection, "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hash) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')");
+mysqli_query($connection, "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hash) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$to = $email;
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	Password: ' .$password .' <br>
 	-------------------- <br>
 	Please click this link to setup your account: <br>
-	http://pikin.com.au/verify.php?email='.$email.'&hash='.$hash.'";
+	http://pikin.com.au/verify.php?email=$email&hash=$hash";
 	$headers = 'From:info@pikin.com.au'. "\r\n";
 	mail($to, $subject, $message, $headers);
 }
