@@ -146,7 +146,7 @@ $sql = "SELECT * from educators where postcode ='$postcode'";
                 mysqli_close ($connection);
         }
                 else{
-                  die(header("location:index.php?searchFailed=true&reason=postcode"));
+                  die(header("location:index.php"));
 }
 }
 

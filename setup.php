@@ -69,7 +69,7 @@
                     <br>
                 <div class="signin-signup-form">
                 <div class="form-items">
-                    <form id="signupform" method="POST" action="register.php">
+                    <form id="signupform" method="POST" action="setuppr.php">
                         <div class="row">
                             <div class="col-md-6 form-text">
                                 <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">
@@ -79,17 +79,17 @@
                             </div>
                         </div>
                         <div class="form-text">
-                            <input type="text" name="phone" placeholder="Phone Number" required autocomplete="off" style="padding: 15px 30px">
+                            <input type="text" name="phonenumber" placeholder="Phone Number" required autocomplete="off" style="padding: 15px 30px">
                         </div>
                         <div class="form-text">
                             <input type="text" name="homeaddress" placeholder="Home Address" required autocomplete="off" style="padding: 15px 30px">
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-text">
-                                <input type="text" name="suburb" placeholder="Suburb" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="homesuburb" placeholder="Suburb" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                             <div class="col-md-6 form-text">
-                                <input type="text" name="postcode" placeholder="Post Code" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="homepostcode" placeholder="Post Code" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                         </div>
                         <div class="form-text">
@@ -97,10 +97,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-text">
-                                <input type="text" name="suburb" placeholder="Suburb" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="officesuburb" placeholder="Suburb" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                             <div class="col-md-6 form-text">
-                                <input type="text" name="postcode" placeholder="Post Code" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="officepostcode" placeholder="Post Code" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                         </div>
                          <div class="row">
@@ -108,13 +108,13 @@
                                 <p style="margin-top: 10px">
                                     Upload Profile Photo
                                 </p>
-                                <input type="file" name="avatar" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="file" name="image" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                             <div class="col-md-12 form-text">
                                 <p style="margin-top: 10px">
                                     Number of kids to be registered in child care service
                                 </p>
-                                <input type="text" name="num_kids" placeholder="E.g: 3" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="numkids" placeholder="E.g: 3" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                         </div>
                         <div class="form-text">
@@ -128,7 +128,7 @@
                                 <p style="margin-top: 10px">
                                     Type of child care service required
                                 </p>
-                                <input type="text" name="caretype" placeholder="E.g: Special Care" required autocomplete="off" style="padding: 15px 30px">
+                                <input type="text" name="typeofservice" placeholder="E.g: Special Care" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                             <div class="col-md-6 form-text">
                                 <p style="margin-top: 10px">
@@ -144,6 +144,13 @@
                         </div>
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Finish Signup</button>
+                            <?php 
+                            $reasons = array("error" => "There were errors with your registration","suburb" => "" );
+                            if (isset($_GET["setupFailed"])) {
+                                echo $reasons[$_GET["error"]];
+                            }
+
+                            ?>
                         </div>
                     </form>
                 </div>

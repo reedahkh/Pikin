@@ -111,13 +111,7 @@
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
-                            <?php 
-                            $reasons = array("postcode" => "You entered an invalid postcode","suburb" => "Suburb does not exist" );
-                            if (isset($_GET["searchFailed"])) {
-                                echo $reasons[$_GET["reason"]];
-                            }
-
-                            ?>
+                            
                         </form>
                     </div>
                 </div>
@@ -380,7 +374,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="buttons-holder">
-                    <a href="signup.html" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
+                    <a href="signup.php" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
                 </div>
             </div>
         </div>
