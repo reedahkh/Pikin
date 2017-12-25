@@ -111,13 +111,7 @@
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
-                            <?php 
-                            $reasons = array("postcode" => "You entered an invalid postcode","suburb" => "Suburb does not exist" );
-                            if (isset($_GET["searchFailed"])) {
-                                echo $reasons[$_GET["reason"]];
-                            }
-
-                            ?>
+                            
                         </form>
                     </div>
                 </div>
@@ -265,7 +259,7 @@
                             </ul>
                         </div>
                         <div class="pricing-link">
-                            <a class="ybtn" href="signin.html">Register Here</a>
+                            <a class="ybtn" href="signin.php">Register Here</a>
                         </div>
                     </div>
                 </div>
@@ -375,12 +369,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <div class="text-purple-light">Are you ready?</div>
+                <div class="text-purple-light"><strong>Are you an Educator?</strong></div>
                 <div class="text-purple-dark">Join Australia’s fastest growing family day care educator booking service. </div>
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="buttons-holder">
-                    <a href="signup.html" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
+                    <a href="signup.php" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
                 </div>
             </div>
         </div>

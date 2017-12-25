@@ -131,8 +131,8 @@ $sql = "SELECT * from educators where postcode ='$postcode'";
       </div>
       <div class="col-md-2">
 
-        <button class="btn btn-success pull-right">
-          Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i>
+        <button class="btn btn-success pull-right" name="book"> <a href="booking.php">
+          Book </a><i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i>
         </button>
       </div>
 <div class="clearfix"></div>
@@ -146,7 +146,7 @@ $sql = "SELECT * from educators where postcode ='$postcode'";
                 mysqli_close ($connection);
         }
                 else{
-                  die(header("location:index.php?searchFailed=true&reason=postcode"));
+                  die(header("location:index.php"));
 }
 }
 

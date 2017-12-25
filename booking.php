@@ -1,3 +1,14 @@
+<?php
+session_start();
+iclude ("dbconnection.php");
+
+$email = $_SESSION['email'];
+if (!isset($email)) {
+    header('location: login.php');
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -26,15 +37,15 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="logo-holder" href="index.html">
+                            <a class="logo-holder" href="index.php">
                                 <div class="logo" style="width:62px;height:18px"></div>
                             </a>
                         </div>
                         <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="booking.html">Family DayCare Educator Booking Service</a><li>
-                                <li><a class="login-button" href="signin.html">Login/Sign-Up</a></li>
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="booking.php">Family DayCare Educator Booking Service</a><li>
+                                <li><a class="login-button" href="signin.php">Login/Sign-Up</a></li>
                                 <li class="support-button-holder support-dropdown">
                                     <a class="support-button" href="#">Support</a>
                                     <ul class="dropdown-menu">
@@ -62,7 +73,7 @@
 </div>
 <div id="page-content" class="container-fluid">
     <div class="container">
-        <form id="booking">
+        <form id="booking" action="bookingp.php" method="POST">
         <div class="row">
             <div align="center">
                 <div class="signin-signup-form">
@@ -73,37 +84,41 @@
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only">Select type of service required</span>
-                            <select>
-                                <option value="pick-off-drop-off">Pick off and drop off</option>
-                                <option value="morning-childcare-service">Morning Childcare Service</option>
-                                <option value="evening-childcare-service">Evening Childcare Service</option>
+                            <select name="typeofservice" >
+                                <option name="typeofservice" value="Pickoff and Dropoff">Pick off and drop off</option>
+                                <option name="typeofservice" value="Morning Childcare Service">Morning Childcare Service</option>
+                                <option name="typeofservice" value="Evening Childcare Service">Evening Childcare Service</option>
                             </select>
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only">Choose days of the week you are interested in</span><br>
-                            <input type="checkbox" name="day1" id="sunday"><label for="sunday">Sunday</label>
-                            <input type="checkbox" name="day2" id="monday"><label for="monday">Monday</label>
-                            <input type="checkbox" name="day3" id="tuesday"><label for="tuesday">Tuesday</label>
-                            <input type="checkbox" name="day4" id="wednesday"><label for="wednesday">Wednesday</label>
-                            <input type="checkbox" name="day5" id="thursday"><label for="thursday">Thursday</label>
-                            <input type="checkbox" name="day6" id="friday"><label for="friday">Friday</label>
-                            <input type="checkbox" name="day7" id="saturday"><label for="saturday">Saturday</label>
+                            <input type="checkbox" name="day[]" id="sunday" value="sunday"><label for="sunday"  >Sunday</label>
+                            <input type="checkbox" name="day[]" id="monday" value="monday"><label for="monday"  >Monday</label>
+                            <input type="checkbox" name="day[]" id="tuesday" value="tuesday"><label for="tuesday"  >Tuesday</label>
+                            <input type="checkbox" name="day[]" id="wednesday" value="wednesday" ><label for="wednesday" >Wednesday</label>
+                            <input type="checkbox" name="day[]" id="thursday" value="thursday" ><label for="thursday" >Thursday</label>
+                            <input type="checkbox" name="day[]" id="friday" value="friday"><label for="friday" >Friday</label>
+                            <input type="checkbox" name="day[]" id="saturday" value="saturday"><label for="saturday">Saturday</label>
                         </div><br>
                         <div class="col-md-6 form-text">
                             <span class="text-only">Please choose service start time</span>
-                            <input type="time" name="time" id="start-time" placeholder="" required>
+                            <input type="time" name="starttime" id="start-time" placeholder="" required>
                         </div>
                         <div class="col-md-6 form-text">
                             <span class="text-only">Please choose service end time</span>
-                            <input type="time" name="time" id="end-time" placeholder="" required>
+                            <input type="time" name="endtime" id="end-time" placeholder="" required>
                         </div>
                         <div class="form-text text-holder">
                             <br><br><span class="text-only">Preferred method of payment.</span><br>
-                            <input type="radio" name="pmethod" class="hno-radiobtn" id="paypal"><label for="paypal">Paypal</label>
-                            <input type="radio" name="pmethod" class="hno-radiobtn" id="cc"><label for="cc">Credit Card</label>
+                            <input type="radio" name="paymentmethod" class="hno-radiobtn" id="paypal" value="Paypal"><label for="paypal">Paypal</label>
+                            <input type="radio" name="paymentmethod" class="hno-radiobtn" id="cc" value="Credit Card"><label for="cc">Credit Card</label>
                         </div>
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Book Service</button>
+                            <?php 
+                            $reasons = array("booking" => "Booking not Successful, Please Try Again Later", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["bookingFailed"]) echo $reasons[$_GET["reason"]]; 
+                            ?>
                         </div>
                 </div>
                 </div>
@@ -147,7 +162,7 @@
                     <ul class="footer-menu">
                         <li><a href="help.html">Help</a></li>
                         <li><a href="#">Testimonials</a></li>
-                        <li><a href="signup.html">Sign Up/Log In</a></li>
+                        <li><a href="signup.php">Sign Up/Log In</a></li>
                     </ul>
                 </div>
             </div>
