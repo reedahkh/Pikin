@@ -1,18 +1,10 @@
 <?php
-<<<<<<< HEAD
-=======
-
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
 session_start();
 include("dbconnection.php"); //creates database connection
 $email = $_SESSION['email'];
 if (!isset($email)) {
   header('Location:login.php');
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
 else {
   $query = "SELECT * FROM parents WHERE email = '$email'";
   $userdetails =  mysqli_query ($connection, $query);
@@ -23,13 +15,7 @@ else {
   $email = $data["email"];
   $paymentmethod = $data["paymentmethod"];
   $image = $data["image"];
-<<<<<<< HEAD
 }
-=======
-
-}
-
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
 ?>
 
 
@@ -91,11 +77,7 @@ else {
             <div class="side-bar" style=""> 
            <div class="col-md-3" style="padding: 0px">
             <div style="padding: 30px">
-<<<<<<< HEAD
                 <img src="images/<?php echo $data["image"]; ?>" class="img-responsive" alt="" style="border-radius: 5px">
-=======
-                <img src="images/<?=$data['photo']?>" class="img-responsive" alt="" style="border-radius: 5px">
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
             </div>
               </div>
            <div class="col-md-9">
@@ -104,31 +86,19 @@ else {
               <span style="font-size: 14px; color: #ddd; margin-right: 10px">
                 <i class="fa  fa-id-badge"></i>
               </span>
-<<<<<<< HEAD
                <?=$firstname?> <?=$lastname?> &nbsp; <span style="font-size: 15px; font-weight: ; color: #333"><?php echo $data["age"]; ?></span>
-=======
-               <?=$firstname?> <?=$lastname?> &nbsp; <span style="font-size: 15px; font-weight: ; color: #333">(32 yrs)</span>
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
              </h5>
              <h6 style="text-transform: none; font-weight: normal; margin: 0px; padding: 5px 0px">
               <span style="font-size: 14px; color: #ddd; margin-right: 10px">
                 <i class="fa  fa-globe"></i>
               </span>
-<<<<<<< HEAD
                <?php echo $data["homeaddress"]; ?>
-=======
-               Abidjan, Cote d'ivoire
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
              </h6>
              <h6 style="text-transform: none; font-weight: normal; margin: 0px; padding: 5px 0px; line-height: 1.5">
               <span style="font-size: 14px; color: #ddd; margin-right: 10px">
                 <i class="fa  fa-phone"></i>
               </span>
-<<<<<<< HEAD
                <a href="tel:09060697356" style="color: #337ab7"><?php echo $data["phonenumber"]; ?> </a>
-=======
-               <a href="tel:09060697356" style="color: #337ab7">08037478546</a>
->>>>>>> 165d05d41442f08e6329d31b431e97c22ad175cb
                &nbsp;
                &nbsp;
                &nbsp;

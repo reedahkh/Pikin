@@ -12,7 +12,13 @@ $paymentmethod = $_POST ['paymentmethod'];
 $hash = md5(rand (0,1000));
 
 //Executes the query
-mysqli_query($connection, "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hash) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')");
+$sql = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hash) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
+if ($connection->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $connection->error;
+}
+echo $sql;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$to = $email;
