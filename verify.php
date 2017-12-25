@@ -28,23 +28,27 @@ if(isset($_GET['email']) && !empty($_GET['email']) AND isset($_GET['hash']) && !
     $result = mysqli_query ($connection, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        $sqlx = "UPDATE parents SET active='1' WHERE email='$email', hash='$hash', active='0'");
+        $sqlx = "UPDATE parents SET active='1' WHERE email='$email', hash='$hash', active='0'";
         $resultx = mysqli_query ($connection, $sqlx);
     
-    if (mysqli_num_rows($resultx)>0) {
+        if (mysqli_num_rows($resultx)>0) {
 
-        while ($row = mysqli_fetch_assoc ($resultx)){
+            while ($row = mysqli_fetch_assoc ($resultx)){
 
-        
-        echo 'Your account has been activated, you can now login ';
-        header('location:setup.php');
-    }
-    else {
+            
+            echo 'Your account has been activated, you can now login ';
+            header('location:setup.php');
+
+            }
+        }
+        else {
        
         echo 'The url is either invalid or you already activated your account';
-    }
+        }
                  
-} else {
+} 
+
+else {
     echo 'Invalid approach, please use the link that has been sent to your email.';
 }   
             mysqli_free_result ($result);

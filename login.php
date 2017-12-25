@@ -13,12 +13,14 @@ $result = mysqli_query ($connection, $sql);
 $row = mysqli_fetch_array ($result);
 if (is_array($row))
 {
-	$_session ['email'] = $row [email];
-	$_session ['password'] = $row [password];
+	$_SESSION['email'] = $row['email'];
+	$_SESSION['password'] = $row['password'];
+	header('Location:member.php');
+	
 }
 else 
 	die(header('Location:signin.php?loginFailed=true&reason=password')); 
-if(isset($_session['username'])); 
+if(isset($_SESSION['email'])); 
 	header('Location:member.php');
 
 ?>

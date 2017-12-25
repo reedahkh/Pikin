@@ -1,3 +1,28 @@
+<?php
+
+session_start();
+include("dbconnection.php"); //creates database connection
+$email = $_SESSION['email'];
+if (!isset($email)) {
+  header('Location:login.php');
+}
+
+else {
+  $query = "SELECT * FROM parents WHERE email = '$email'";
+  $userdetails =  mysqli_query ($connection, $query);
+  $data = mysqli_fetch_assoc($userdetails);
+  
+  $firstname = $data["firstname"];
+  $lastname = $data["lastname"];
+  $email = $data["email"];
+  $paymentmethod = $data["paymentmethod"];
+  $image = $data["image"];
+
+}
+
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -14,7 +39,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/style3.css">
 <link rel="stylesheet" href="css/responsive.css">
-
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <!-- FontsOnline -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -37,62 +62,69 @@
   <!-- Content -->
   <main class="cd-main-content">
     <div id="content">
-      <div class="resume">
-        <div class="container"> 
-          
-          <!-- TOP HEAD -->
-          <div class="top-head">
+      <!-- TOP HEAD -->
+          <div class="top-head" style="margin: 0px; background: white; padding: 10px 0px;">
+        <div class="container" style=""> 
             <div class="row">
-              <div class="col-sm-6">
-                <h4></h4><img src="img/logo.png" class="img-responsive" alt="">
-                <a href="index.html">Logout</a> </div>
-              <div class="col-sm-6"> <a id="cd-menu-trigger" href="#0"><span class="cd-menu-icon"></span></a> </div>
+              <div class="col-md-12">
+                <h4></h4><img src="img/logo.png" class="img-responsive" alt="" style="width: 110px">
+                <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a> </div>
+              <div class="col-sm-6 hidden"> <a id="cd-menu-trigger" href="#0"><span class="cd-menu-icon"></span></a> </div>
             </div>
           </div>
+          </div>
+      <div class="resume" style="padding-top: 20px;">
+
+        <div class="container" style=""> 
           
+         <div class="col-md-12" style="padding: 0px">
+            <div class="side-bar" style=""> 
+           <div class="col-md-3" style="padding: 0px">
+            <div style="padding: 30px">
+                <img src="images/<?=$data['photo']?>" class="img-responsive" alt="" style="border-radius: 5px">
+            </div>
+              </div>
+           <div class="col-md-9">
+            <div style="padding: 30px">
+             <h5 style="text-transform: none; margin: 0px; padding: 5px 0px;line-height: 1.5">
+              <span style="font-size: 14px; color: #ddd; margin-right: 10px">
+                <i class="fa  fa-id-badge"></i>
+              </span>
+               <?=$firstname?> <?=$lastname?> &nbsp; <span style="font-size: 15px; font-weight: ; color: #333">(32 yrs)</span>
+             </h5>
+             <h6 style="text-transform: none; font-weight: normal; margin: 0px; padding: 5px 0px">
+              <span style="font-size: 14px; color: #ddd; margin-right: 10px">
+                <i class="fa  fa-globe"></i>
+              </span>
+               Abidjan, Cote d'ivoire
+             </h6>
+             <h6 style="text-transform: none; font-weight: normal; margin: 0px; padding: 5px 0px; line-height: 1.5">
+              <span style="font-size: 14px; color: #ddd; margin-right: 10px">
+                <i class="fa  fa-phone"></i>
+              </span>
+               <a href="tel:09060697356" style="color: #337ab7">08037478546</a>
+               &nbsp;
+               &nbsp;
+               &nbsp;
+               <br class="visible-sm visible-xs">
+              <span style="font-size: 14px; color: #ddd; margin-right: 10px;">
+                <i class="fa  fa-envelope"></i>
+              </span>
+               <a href="email:<?=$email?>" style="color: #337ab7"><?=$email?></a>
+             </h6>
+           </div>
+           </div>
+           <div class="clearfix"></div>
+           </div>
+         </div>
+         <div class="clearfix"></div>
+          <br>
+          <br>
           <!-- Resume -->
           <div class="row"> 
-            <!-- Sidebar -->
-            <div class="col-md-4">
-              <div class="side-bar"> 
-                
-                <!-- Professional Details -->
-                <h5 class="tittle">Personal Details</h5>
-                <img src="images/avatar.jpg" class="img-responsive" alt="">
-                <ul class="personal-info">
-                  <li>
-                    <p> <span> Name</span> Hedrick Sage </p>
-                  </li>
-                  <li>
-                    <p> <span> Age</span> 38 Years </p>
-                  </li>
-                  <li>
-                    <p> <span> Location</span> United States </p>
-                  </li>
-                  <li>
-                    <p> <span> Phone</span> (800) 123-4567 </p>
-                  </li>
-                  <li>
-                    <p> <span> E-mail</span> <a href="#."> hedrick2001@yahoomail.com</a> </p>
-                  </li>
-                </ul>
-                
-                <!-- Attachments -->
-                <h5 class="tittle">Beneficiaries</h5>
-                <div class="attach bor-btm padding-25">
-                  <ul>
-                    <li>
-                      <p><img src="" alt="" > Selina Leung </p>
-                    </li>
-                  </ul>
-                </div>
-                
-                
-              </div>
-            </div>
-            
+
             <!-- MAIN CONTENT -->
-            <div class="col-md-8"> 
+            <div class="col-md-12"> 
               
               <!-- NAV LINKS -->              
               <nav> 
@@ -101,8 +133,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="nav-tabis">
                   <ul class="isop-filter nav nav-pills">
-                    <li role="presentation" class="active"><a href="#about-me" aria-controls="about-me" role="tab" data-toggle="tab"><i class="icon-user"></i> MY ACCOUNT</a></li>
-                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"> <i class="icon-rocket"></i>EDIT PROFILE</a></li>
+                    <li role="presentation" class="active"><a href="#about-me" aria-controls="about-me" role="tab" data-toggle="tab"> MY ACCOUNT &nbsp; &nbsp;<i class="fa fa-id-badge" style="opacity: .7"></i></a></li>
+                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"> 
+                       EDIT PROFILE &nbsp; &nbsp;<i class="fa fa-pencil" style="opacity: .7"></i></a></li>
                   </ul>
                 </div>
               </nav>
@@ -116,7 +149,7 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="about-me">
                   <div class="inside-sec"> 
                     <!-- BIO AND SKILLS -->
-                    <h5 class="tittle">Hedrick Sage's Account Details</h5>
+                    <h5 class="tittle" style="font-weight: normal;"><?=$firstname?>'s Account Details</h5>
                     
                     <!-- Blog -->
                     <section class="about-me padding-top-10"> 
@@ -124,20 +157,17 @@
                       <!-- Personal Info -->
                       <ul class="personal-info">
                         <li>
-                          <p> <span> Acct Type</span> Family Day Care Educator </p>
+                          <p> <span> Acct Type</span> <?=$data['account_type']?> </p>
                         </li>
                         <li>
-                          <p> <span> Acct Form</span> Personal </p>
-                        </li>
-                        <li>
-                          <p> <span> Location</span> Australia </p>
+                          <p> <span> Acct Form</span> <?=$data['account_form']?> </p>
                         </li>
                       </ul>
                       
                       
                       
                       <!-- Skills -->
-                      <h5 class="tittle">More Details</h5>
+                      <h5 class="tittle" style="font-weight: normal;">More Details</h5>
                       
                       <!-- Sound Engineering -->
                       <div class="panel-group accordion padding-20" id="accordion">
@@ -452,7 +482,7 @@
                       
                       
                       <!-- Contact  -->
-                      <h5 class="tittle">EDIT PROFILE</h5>
+                      <h5 class="tittle" style="font-weight: normal;">EDIT PROFILE</h5>
                       <div class="contact style-3 light-border padding-top-50 padding-bottom-50 padding-left-20 padding-right-20"> 
                         
                         <!-- Form  -->
@@ -463,31 +493,37 @@
                           <!-- FORM -->
                           <form role="form" id="contact_form_1" class="contact-form" method="post" onSubmit="return false">
                             <ul class="row">
-                              <li class="col-sm-4">
+                              <div class="col-xs-6">
+                              <li>
                                 <label>
-                                  <input type="text" class="form-control" name="name" id="name_1" placeholder="NAME">
+                                  <input type="text" class="form-control" name="name" id="name_1" placeholder="NAME" value="<?=$data['firstname']?> <?=$data['lastname']?>">
                                 </label>
                               </li>
-                              <li class="col-sm-4">
+                            </div>
+                              <div class="col-xs-6">
+                              <li>
                                 <label>
-                                  <input type="text" class="form-control" name="email" id="email_1" placeholder="EMAIL">
+                                  <input type="text" class="form-control" name="email" id="email_1" placeholder="EMAIL" value="<?=$data['email']?>">
                                 </label>
                               </li>
-                              <li class="col-sm-12">
+                            </div>
+                            <div class="clearfix"></div>
+                              <div class="col-md-6">
+                              <li>
                                 <button type="submit"  value="upload" id="btn_submit_1">UPLOAD PICTURE</button>
                               </li>
-                              <li class="col-sm-4">
+                            </div>
+                              <div class="col-md-6">
+                              <li>
                                 <label>
                                   <input type="text" class="form-control" name="company" id="company_1" placeholder="AGE">
                                 </label>
                               </li>
+                            </div>
                               <li class="col-sm-12">
-                                <label>
-                                  <textarea class="form-control" name="message" id="message_1" rows="5" placeholder="OTHER DETAILS"></textarea>
-                                </label>
-                              </li>
-                              <li class="col-sm-12">
+                                <center>
                                 <button type="submit"  value="submit" id="btn_submit_1" onClick="proceed();">SAVE</button>
+                                </center>
                               </li>
                             </ul>
                           </form>
