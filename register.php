@@ -1,68 +1,47 @@
 <?php
-	include("dbconnection.php"); //creates database connection
-	require_once("PhpMailer/class.phpmailer.php");
-	require_once("PhpMailer/class.smtp.php");
+session_start();
+include("dbconnection.php"); //creates database connection
 
-	if(isset($_POST["firstname"])) {
-		$firstname = $_POST ['firstname']; 
-		$lastname = $_POST ['lastname']; 
-		$email = $_POST ['email']; 
-		$password = $_POST ['password']; 
-		$paymentmethod = $_POST ['paymentmethod'];
-		$hash = md5(rand (0,1000));
+if (isset($_POST["submit"]) && !empty($_POST["submit"]));
 
-		$sql = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
-		if ($connection->query($sql) === TRUE) {
-			echo "New record created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $connection->error;
-		}
+$firstname = $_POST ['firstname']; 
+$lastname = $_POST ['lastname']; 
+$email = $_POST ['email']; 
+$password = $_POST ['password']; 
+$paymentmethod = $_POST ['paymentmethod'];
+$hash = md5(rand (0,1000));
 
-		$subject = "Signup | Verification ";
-		$message = "Thanks for signing up on Pikin! <br> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. 
-	
-		-------------------- 
-		Username: ' .$email
-		Password: ' .$password 
-		-------------------- 
-		Please click this link to setup your account:
-		http://pikin.com.au/verify.php?email=$email&hash=$hash";
-
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->CharSet="UTF-8";
-		$mail->Host = 'mail.pikin.com.au';
-		$mail->Port = 25;
-		$mail->Username = 'info@pikin.com.au';
-		$mail->Password = 'Pickcrm#3@1';
-		$mail->SMTPAuth = true;
+//Executes the query
+$sql = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
+if ($connection->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $connection->error;
+}
 
 
-		$mail->From = 'info@pikin.com.au';
-		$mail->FromName = 'Pikin';
-		$mail->AddAddress("$email");
-		$mail->AddAddress("info@pikin.com.au");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$to = $email;
+	$subject = "Signup | Verification ";
+	$message = "Thanks for signing up on Pikin! <br> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. 
+	<br>
+	-------------------- <br>
+	Username: ' .$email .' <br>
+	Password: ' .$password .' <br>
+	-------------------- <br>
+	Please click this link to setup your account: <br>
+	http://pikin.com.au/verify.php?email=$email&hash=$hash";
+	$headers = 'From:info@pikin.com.au'. "\r\n";
+	mail($to, $subject, $message, $headers);
+	die(header('Location:success.html'));
 
-		$mail->IsHTML(false);
-		$mail->Subject    = $subject;
-		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
-		$mail->Body    = $message;
-		
-		
+}
+ 
 
-		if(!$mail->Send())
-		{
-		echo "Mailer Error: " . $mail->ErrorInfo;
-		}
-		else
-		{
-		echo "Message sent!";
-		}
+else {
+	die(header('Location: signup.php'));
+	echo mysqli_error($connection);	
+} 
 
-		die(header('Location:success.html'));
-	}
 
-	else {
-		die(header('Location: index.php'));
-	}
 ?>

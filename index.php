@@ -184,7 +184,7 @@
                             <br>
 
                         <div class="pricing-link">
-                            <a class="ybtn" href="#">Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i></a>
+                            <a class="ybtn" href="booking.php">Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i></a>
                         </div>
                     </div>
                 </div>
@@ -374,7 +374,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="buttons-holder">
-                    <a href="signup.php" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
+                    <a href="esignup.php" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
                 </div>
             </div>
         </div>

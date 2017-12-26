@@ -1,14 +1,12 @@
 <?php
 session_start();
-iclude ("dbconnection.php");
+include("dbconnection.php");
 
 $email = $_SESSION['email'];
 if (!isset($email)) {
-    header('location: login.php');
+    header('Location:login.php');
 }
-
 ?>
-
 <!doctype html>
 <html>
 <head>
@@ -81,6 +79,9 @@ if (!isset($email)) {
                     <div class="form-title"></div>
                         <div class="form-text">
                             <input type="text" name="suburb" placeholder="Enter you Suburb Here" required>
+                        </div>
+                        <div class="form-text">
+                            <input type="text" name="postcode" placeholder="Enter you Postcode Here" required>
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only">Select type of service required</span>

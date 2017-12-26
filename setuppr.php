@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("dbconnection.php");
-$email = $_SESSION['email'];
+
 if (isset($_POST["submit"]) && !empty($_POST["submit"])); 
 
 $phonenumber = $_POST['phonenumber'];
@@ -17,7 +17,7 @@ $ageofkids = $_POST['ageofkids'];
 $typeofservice = $_POST['typeofservice'];
 $servicehours = $_POST['servicehours'];
 
-mysqli_query ($connection, "INSERT INTO parents (phonenumber, homeaddress, homesuburb, homepostcode, officeaddress, officesuburb, officepostcode, image, kids, ageofkids, typeofservice, hoursofservice) VALUES ($phonenumber', '$homeaddress', '$homesuburb', '$homepostcode', '$officeaddress', '$officesuburb', '$officepostcode', '$image', '$numkids', '$ageofkids', '$typeofservice', '$servicehours') WHERE email='$email'");
+mysqli_query ($connection, "INSERT INTO parents (phonenumber, homeaddress, homesuburb, homepostcode, officeaddress, officesuburb, officepostcode, image, kids, ageofkids, typeofservice, hoursofservice) VALUES ($phonenumber', '$homeaddress', '$homesuburb', '$homepostcode', '$officeaddress', '$officesuburb', '$officepostcode', '$image', '$numkids', '$ageofkids', '$typeofservice', '$servicehours')");
 
 if (mysqli_affected_rows ($connection) >0) {
     header('Location: member.php');

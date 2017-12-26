@@ -72,8 +72,8 @@
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only" style="font-size: 16px; font-weight: normal">Preferred method of payment.</span>
-                            <input type="radio" name="paymentmethod" required value="Paypal" class="hno-radiobtn" id="rad1"><label for="rad1" style="font-size: 16px; font-weight: bold">Paypal</label>
-                            <input type="radio" name="paymentmethod" required value="Credit Card" class="hno-radiobtn" id="rad2"><label for="rad2" style="font-size: 16px; font-weight: bold">Credit Card</label>
+                            <input type="radio" name="paymentmethod" value="Paypal" class="hno-radiobtn" id="rad1"><label for="rad1" style="font-size: 16px; font-weight: bold">Paypal</label>
+                            <input type="radio" name="paymentmethod" value="Credit Card" class="hno-radiobtn" id="rad2"><label for="rad2" style="font-size: 16px; font-weight: bold">Credit Card</label>
                         </div>
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Create new account</button>

@@ -63,8 +63,9 @@ else {
         <div class="container" style=""> 
             <div class="row">
               <div class="col-md-12">
-                <h4></h4><img src="img/logo.png" class="img-responsive" alt="" style="width: 110px">
-                <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a> </div>
+                <h4></h4> <img src="img/logo.png" class="img-responsive" alt="" style="width: 110px">
+                <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a> 
+                <a href="index.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px" target="_blank" >Home <i class="fa fa-home" style="margin-left: 5px"></i> </a> </div>
               <div class="col-sm-6 hidden"> <a id="cd-menu-trigger" href="#0"><span class="cd-menu-icon"></span></a> </div>
             </div>
           </div>
@@ -129,6 +130,7 @@ else {
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="nav-tabis">
                   <ul class="isop-filter nav nav-pills">
+
                     <li role="presentation" class="active"><a href="#about-me" aria-controls="about-me" role="tab" data-toggle="tab"> MY ACCOUNT &nbsp; &nbsp;<i class="fa fa-id-badge" style="opacity: .7"></i></a></li>
                     <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"> 
                        EDIT PROFILE &nbsp; &nbsp;<i class="fa fa-pencil" style="opacity: .7"></i></a></li>
