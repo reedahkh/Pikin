@@ -20,9 +20,7 @@ if (isset($_POST["firstname"])) {
 	} else {
 		echo "Error: " . $sql . "<br>" . $connection->error;
 	}
-	echo $sql;
-
-	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
 		$to = $email;
 		$from = "talk2vinciii@gmail.com";
 		$fromName = "Pikin";
@@ -69,9 +67,6 @@ if (isset($_POST["firstname"])) {
 		}
 
 		die(header('Location:success.html'));
-
-	}
-
 }
 
 
