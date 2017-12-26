@@ -21,9 +21,7 @@
         // Verify data
         $email = ($_GET['email']); 
         $hash = ($_GET['hash']); 
-        echo $email;
-        echo $hash;
-
+        
         $sql = "SELECT * FROM parents WHERE email='$email' AND hashkey='$hash' AND active='0'"; 
         echo $sql;
         $result = mysqli_query($connection, $sql);
@@ -34,6 +32,7 @@
             $sqlx = "UPDATE parents SET active='1' WHERE email='$email' AND hashkey='$hash' AND active='0'";
             if ($connection->query($sqlx) === TRUE) {
                 echo 'Your account has been activated, you can now login ';
+                $_SESSION['email'] = $email;
                 header('location:setup.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $connection->error;
