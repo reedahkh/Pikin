@@ -1,5 +1,7 @@
 <?php
 	include("dbconnection.php"); //creates database connection
+	require_once("PhpMailer/class.phpmailer.php");
+	require_once("PhpMailer/class.smtp.php");
 
 	if(isset($_POST["firstname"])) {
 		$firstname = $_POST ['firstname']; 
@@ -15,13 +17,52 @@
 		} else {
 			echo "Error: " . $sql . "<br>" . $connection->error;
 		}
+
+		$subject = "Signup | Verification ";
+		$message = "Thanks for signing up on Pikin! <br> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. 
+	
+		-------------------- 
+		Username: ' .$email
+		Password: ' .$password 
+		-------------------- 
+		Please click this link to setup your account:
+		http://pikin.com.au/verify.php?email=$email&hash=$hash";
+
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->CharSet="UTF-8";
+		$mail->Host = 'mail.pikin.com.au';
+		$mail->Port = 25;
+		$mail->Username = 'info@pikin.com.au';
+		$mail->Password = 'Pickcrm#3@1';
+		$mail->SMTPAuth = true;
+
+
+		$mail->From = 'info@pikin.com.au';
+		$mail->FromName = 'Pikin';
+		$mail->AddAddress("$email");
+		$mail->AddAddress("info@pikin.com.au");
+
+		$mail->IsHTML(false);
+		$mail->Subject    = $subject;
+		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
+		$mail->Body    = $message;
+		
+		
+
+		if(!$mail->Send())
+		{
+		echo "Mailer Error: " . $mail->ErrorInfo;
+		}
+		else
+		{
+		echo "Message sent!";
+		}
+
+		die(header('Location:success.html'));
 	}
 
 	else {
 		die(header('Location: index.php'));
 	}
-
-
-
-
 ?>
