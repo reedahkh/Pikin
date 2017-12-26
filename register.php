@@ -19,14 +19,7 @@
 		}
 
 		$subject = "Signup | Verification ";
-		$message = "Thanks for signing up on Pikin! <br> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. 
-	
-		-------------------- 
-		Username: ' .$email
-		Password: ' .$password 
-		-------------------- 
-		Please click this link to setup your account:
-		http://pikin.com.au/verify.php?email=$email&hash=$hash";
+		$message = "Thanks for signing up on Pikin!";
 
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
@@ -43,7 +36,7 @@
 		$mail->AddAddress("$email");
 		$mail->AddAddress("info@pikin.com.au");
 
-		$mail->IsHTML(false);
+		$mail->IsHTML(true);
 		$mail->Subject    = $subject;
 		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
 		$mail->Body    = $message;
