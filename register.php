@@ -32,7 +32,7 @@
 		$mail->FromName = 'Pikin';
 		$mail->AddAddress("$email");
 		$mail->AddAddress("info@pikin.com.au");
-		$mail->IsHTML(true);
+		$mail->IsHTML(false);
 		$mail->Subject    = $subject;
 		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
 		$mail->Body    = $message;
