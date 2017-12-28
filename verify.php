@@ -23,7 +23,7 @@
         $hash = ($_GET['hash']); 
         $sql = "SELECT * FROM parents WHERE active='1' AND email='$email' AND hashkey='$hash";
         $result = mysqli_query ($connection, $sql);
-        if (!$result){
+        if ($result){
             die(header("Location:verified.html"));
         }
 
