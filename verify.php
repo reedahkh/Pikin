@@ -21,14 +21,14 @@
         // Verify data
         $email = ($_GET['email']); 
         $hash = ($_GET['hash']); 
-        $sql = "SELECT * FROM parents WHERE active='1' AND email='$email' AND hashkey='$hash";
+        $sql = "SELECT * FROM parents WHERE active='1' AND email='$email' AND hashkey='$hash'";
         $result = mysqli_query ($connection, $sql);
-        if ($result){
+        if ($result->num_rows > 0){
             die(header("Location:verified.html"));
         }
 
         else {
-            $sqlx = "UPDATE parents SET active='1' WHERE email='$email' AND hashkey='$hash' AND active='0'";
+            $sqlx = "UPDATE parents SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
                     $_SESSION['email'] = $email;
                     header('location:setup.php');
