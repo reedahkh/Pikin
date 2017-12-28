@@ -12,12 +12,20 @@
 		$password = $_POST ['password']; 
 		$paymentmethod = $_POST ['paymentmethod'];
 		$hash = md5(rand (0,1000));
-		$sql = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
-		if ($connection->query($sql) === TRUE) {
-			echo "New record created successfully";
-		} else {
-			echo "Error: " . $sql . "<br>" . $connection->error;
+
+		$sql = "SELECT email from parents where email ='$email' ";
+		$result = mysqli_query($connection, $sql);
+		$row = mysqli_num_rows ($result);
+		if ($row > 0) {
+			die(header('Location:signup.php?signupFailed=true&reason=email'));
 		}
+
+		elseif ($row == 0) {
+		
+		$sqlx = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
+	}
+
+		if ($connection->query($sqlx) === TRUE) 
 		$subject = "Signup | Verification ";
 		$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/verify.php?email=$email&hash=$hash";
 		$mail = new PHPMailer();
@@ -44,9 +52,9 @@
 		}
 		else
 		{
-		echo "Message sent!";
-		}
 		die(header('Location:success.html'));
+		}
+		
 	}
 	else {
 		die(header('Location: index.php'));

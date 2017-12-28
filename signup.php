@@ -77,6 +77,10 @@
                         </div>
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Create new account</button>
+                             <?php 
+                            $reasons = array("email" => "This email already exists", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["signupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
                         </div>
                     </form>
                 </div>

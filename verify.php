@@ -21,33 +21,25 @@
         // Verify data
         $email = ($_GET['email']); 
         $hash = ($_GET['hash']); 
-        $sql = "SELECT * FROM parents WHERE email='$email' AND hashkey='$hash' AND active='0'"; 
-        echo $sql;
-        $result = mysqli_query($connection, $sql);
-        $rowcount=mysqli_num_rows($result);
-        if($rowcount > 0) {
-            $sqlx = "UPDATE parents SET active='1' WHERE email='$email' AND hashkey='$hash' AND active='0'";
+        $sql = "SELECT active FROM parents WHERE active='1'";
+        $result = mysqli_query ($connection, $sql);
+        $row = mysqli_num_rows ($result);
+        if ($row > 0){
+            die(header("Location:verified.html"));
+        }
+
+        elseif ($row == 0){
+        $sqlx = "UPDATE parents SET active='1' WHERE email='$email' AND hashkey='$hash' AND active='0'";
             if ($connection->query($sqlx) === TRUE) {
-                echo 'Your account has been activated, you can now login ';
                 $_SESSION['email'] = $email;
                 header('location:setup.php');
             
             } 
             
-            else {
-                echo "Error: " . $sql . "<br>" . $connection->error;
-            }
-        }
-             
+        }            
          
     }
- 
-    elseif ($rowcount < 0) {
-       
-        echo 'The url is either invalid or you already activated your account';
-    }
                  
-
     else {
         die(header("location:signup.php"));
     }
