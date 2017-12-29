@@ -71,8 +71,8 @@
 
                             <?php 
                             $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["loginFailed"]) echo $reasons[$_GET["reason"]]; 
-                            ?>
+                            if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
 
                         </div>
                     </form>

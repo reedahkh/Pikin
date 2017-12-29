@@ -1,9 +1,16 @@
+<?php
+session_start();
+include("dbconnection.php"); //creates database connection
+$EducatorID = $_SESSION['EducatorID'];
+if (!isset($EducatorID)) {
+  header('Location:elogin.php');
+?>
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Pikin - Success</title>
+<title>Educator Setup</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -127,6 +134,12 @@
                                 </p>
                                 <input type="text" name="servicehours" placeholder="E.g: 2 hours" required autocomplete="off" style="padding: 15px 30px">
                             </div>
+                        </div>
+                        <div class="form-text ">
+                            <span class="text-only" style="font-size: 16px; font-weight: normal">Select Educator</span>
+                            <select name="typeofservice" >
+                                <option name="typeofservice" value=""><?php echo $data["firstname"]. " ". $data["lastname"] ;?></option>
+                            </select>
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only" style="font-size: 16px; font-weight: normal">Preferred method of payment.</span>

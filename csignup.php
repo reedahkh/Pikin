@@ -1,9 +1,9 @@
-<!doctype html>
+<!doctype html> 
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Educator Signin</title>
+<title>Pikin</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -12,7 +12,7 @@
 </head>
 
 <body class="fullpage">
-<div id="form-section" class="container-fluid signin">
+<div id="form-section" class="container-fluid signup">
     <div class="website-logo">
         <a href="index.php">
             <div class="logo" style="width:62px;height:18px"></div>
@@ -22,8 +22,8 @@
         <div class="info-slider-holder">
             <div class="bg-animation"></div>
             <div class="info-holder">
-                <div class="bold-title"><span>Australia’s fastest growing</span>
-                family day care educator booking service.
+                <div class="bold-title">Join <br><span>Australia’s fastest growing</span>
+                family day care educator booking service.<br>
                 </div>
                 <div class="mini-testimonials-slider">
                     <div>
@@ -48,31 +48,35 @@
         <div class="form-holder">
             <div class="menu-holder">
                 <ul class="main-links">
-                    <li><a class="normal-link" href="esignup.php">Don’t have an account?</a></li>
-                    <li><a class="sign-button" href="esignup.php">Sign up</a></li>
+                    <li><a class="normal-link" href="csignin.php">You have an account?</a></li>
+                    <li><a class="sign-button" href="csignin.php">Sign in</a></li>
                 </ul>
             </div>
             <div class="signin-signup-form">
                 <div class="form-items">
-                    <div class="form-title">Sign in to your account</div>
-
-                    <form id="signinform" method="POST" action="elogin.php">
-                        <div class="form-text">
-                            <input type="text" name="email" placeholder="E-mail Address" required>
+                    <div class="form-title">Sign up for new account</div>
+                    <form id="signupform" method="POST" action="cregister.php">
+                        <div class="row">
+                            <div class="col-md-6 form-text">
+                                <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">
+                            </div>
+                            <div class="col-md-6 form-text">
+                                <input type="text" name="lastname" placeholder="Last name" required autocomplete="off" style="padding: 15px 30px">
+                            </div>
                         </div>
                         <div class="form-text">
-                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="Email" name="email" placeholder="E-mail Address" required autocomplete="off" style="padding: 15px 30px">
                         </div>
+                        <div class="form-text">
+                            <input type="password" name="password" placeholder="Password" required autocomplete="off" style="padding: 15px 30px">
+                        </div>
+                        
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Sign in</button>
-                            
-                            <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
-
+                            <button id="submit" type="submit" class="ybtn ybtn-purple">Create new account</button>
                             <?php 
-                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            $reasons = array("email" => "This email already exists", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["signupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
                             ?></font>
-
                         </div>
                     </form>
                 </div>
@@ -87,4 +91,3 @@
 <script src="js/main.js"></script>
 </body>
 </html>
-

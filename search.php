@@ -68,7 +68,7 @@ include ("dbconnection.php");
 <div class="container">
 <?php
 
-if(isset($_POST ["search"]) && !empty($_POST ["search"]));
+if(isset($_POST["search"]) != ""){
 $postcode = $_POST ['postcode'];
 
 $sql = "SELECT * from educators where postcode ='$postcode'";
@@ -144,10 +144,16 @@ $sql = "SELECT * from educators where postcode ='$postcode'";
           }
                 mysqli_free_result ($result);
                 mysqli_close ($connection);
+    }
+     else{
+          
+                  header("location:index.php?NoCode=true&reason=wrongarea");
+          
+}
         }
                 else{
-                  die(header("location:index.php"));
-}
+                  header("location:index.php?NoCode=true&reason=blank");
+} 
 
 
 ?>

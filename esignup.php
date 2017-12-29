@@ -48,8 +48,8 @@
         <div class="form-holder">
             <div class="menu-holder">
                 <ul class="main-links">
-                    <li><a class="normal-link" href="signin.php">You have an account?</a></li>
-                    <li><a class="sign-button" href="signin.php">Sign in</a></li>
+                    <li><a class="normal-link" href="esignin.php">You have an account?</a></li>
+                    <li><a class="sign-button" href="esignin.php">Sign in</a></li>
                 </ul>
             </div>
             <div class="signin-signup-form">
@@ -73,6 +73,10 @@
                         
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Create new account</button>
+                            <?php 
+                            $reasons = array("email" => "This email already exists", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["signupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
                         </div>
                     </form>
                 </div>

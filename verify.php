@@ -31,6 +31,7 @@
             $sqlx = "UPDATE parents SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
                     $_SESSION['email'] = $email;
+                    $_SESSION['ParentID'] = $ParentID;
                     header('location:setup.php');
                 
                 } 

@@ -111,7 +111,17 @@
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
+                            <div>
+                                <?php 
+                            $reasons = array("wrongarea" => "Incorrect Area Code", "blank" => "Area Code Field is Empty"); 
                             
+                            if(isset($_GET["NoCode"])){
+                                
+                                if($_GET["NoCode"]) ?> 
+                                <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                                
+                            }?></font>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -203,7 +213,8 @@
             <div class="col-md-12">
                 <div class="info-text">We have two options to help: Vacancy Alert Pro which leaves the hard work to us and ensures you are first in line when a spot becomes available or our free Child Care Vacancy Alert service which lets child care providers contact you if a vacancy arises.</div>
                 
-                <a href="signup.php" class="ybtn ybtn-purple ybtn-shadow">Sign Up Now!</a>
+                <a href="signup.php" class="ybtn ybtn-purple ybtn-shadow">Parents Sign Up Here</a>
+                <a href="signin.php" class="ybtn ybtn-white ybtn-shadow">Login </a>
             </div>
         </div>
     </div>
@@ -374,7 +385,22 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="buttons-holder">
-                    <a href="esignup.php" class="ybtn ybtn-purple">Create Your Account</a><a href="contact.html" class="ybtn ybtn-white ybtn-shadow">Contact Us</a>
+                    <a href="esignup.php" class="ybtn ybtn-purple">Register as an Educator</a><a href="esignin.php" class="ybtn ybtn-white ybtn-shadow">Login </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="message2" class="container-fluid message-area normal-bg" style="background: #f7f7f7">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="text-purple-light"><strong>Are you a Coordinator?</strong></div>
+                <div class="text-purple-dark">Join Australia’s fastest growing family day care educator booking service. </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="buttons-holder">
+                    <a href="csignup.php" class="ybtn ybtn-purple">Register as a Coordinator</a><a href="csignin.php" class="ybtn ybtn-white ybtn-shadow">Login </a>
                 </div>
             </div>
         </div>
@@ -404,8 +430,8 @@
                 <div class="footer-menu-holder">
                     <h4>Others</h4>
                     <ul class="footer-menu">
-                        <li><a href="signin.php">Sign In</a></li>
-                        <li><a href="signup.php">Sign Up</a></li>
+                        <li><a href="asignin.php">Admin Login</a></li>
+                        <li><a href="#">Sign Up</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                     </ul>

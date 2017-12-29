@@ -12,21 +12,21 @@
 		$password = $_POST ['password']; 
 		$hash = md5(rand (0,1000));
 
-		$sql = "SELECT email from educators where email ='$email' ";
+		$sql = "SELECT email from coordinators where email ='$email' ";
 		$result = mysqli_query($connection, $sql);
 		$row = mysqli_num_rows ($result);
 		if ($row > 0) {
-			die(header('Location:esignup.php?signupFailed=true&reason=email'));
+			die(header('Location:csignup.php?signupFailed=true&reason=email'));
 		}
 
 		elseif ($row == 0) {
 		
-		$sqlx = "INSERT INTO educators (firstname, lastname, email, password, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$hash')";
+		$sqlx = "INSERT INTO coordinators (firstname, lastname, email, password, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$hash')";
 	}
 
 		if ($connection->query($sqlx) === TRUE) 
 		$subject = "Signup | Verification ";
-		$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/everify.php?email=$email&hash=$hash";
+		$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/cverify.php?email=$email&hash=$hash";
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
 		$mail->CharSet="UTF-8";

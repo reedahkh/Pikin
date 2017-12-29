@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Educator Signin</title>
+<title>Pikin</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -46,17 +46,12 @@
             </div>
         </div>
         <div class="form-holder">
-            <div class="menu-holder">
-                <ul class="main-links">
-                    <li><a class="normal-link" href="esignup.php">Don’t have an account?</a></li>
-                    <li><a class="sign-button" href="esignup.php">Sign up</a></li>
-                </ul>
-            </div>
+
             <div class="signin-signup-form">
                 <div class="form-items">
                     <div class="form-title">Sign in to your account</div>
 
-                    <form id="signinform" method="POST" action="elogin.php">
+                    <form id="signinform" method="POST" action="alogin.php">
                         <div class="form-text">
                             <input type="text" name="email" placeholder="E-mail Address" required>
                         </div>

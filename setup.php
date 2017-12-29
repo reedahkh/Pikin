@@ -1,9 +1,18 @@
+<?php
+session_start();
+include("dbconnection.php");
+
+$ParentID = $_SESSION['ParentID'];
+if (!isset($ParentID)) {
+    header('Location:login.php');
+}
+?>
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Pikin - Success</title>
+<title>Pikin - Setup Profile</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -25,7 +34,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="logo-holder" href="index.html">
+                            <a class="logo-holder" href="index.php">
                                 <div class="logo" style="width:62px;height:18px"></div>
                             </a>
                         </div>
@@ -121,7 +130,7 @@
                                 <p style="margin-top: 10px">
                                     Age of each child to be registered with child care service <br> (Seperate with comma <strong> ","</strong>)
                                 </p>
-                            <input type="text" name="age" placeholder="E.g: 12, 11, 9" required autocomplete="off" style="padding: 15px 30px">
+                            <input type="text" name="ageofkids" placeholder="E.g: 12, 11, 9" required autocomplete="off" style="padding: 15px 30px">
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-text">
@@ -145,12 +154,9 @@
                         <div class="form-button">
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Finish Signup</button>
                             <?php 
-                            $reasons = array("error" => "There were errors with your registration","suburb" => "" );
-                            if (isset($_GET["setupFailed"])) {
-                                echo $reasons[$_GET["error"]];
-                            }
-
-                            ?>
+                            $reasons = array("error" => "There were errors with your registration", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["setupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
                         </div>
                     </form>
                 </div>
@@ -174,7 +180,7 @@
                     <h4>New Educators</h4>
                     <ul class="footer-menu">
                         <li><a href="signup.php">Join Pikin</a></li>
-                        <h4>Exisiting Educators</h4>
+                        <li>Exisiting Educators</li>
                         <li><a href="#">Partner Centers</a></li>
                     </ul>
                 </div>

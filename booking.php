@@ -118,8 +118,8 @@ if (!isset($email)) {
                             <button id="submit" type="submit" class="ybtn ybtn-purple">Book Service</button>
                             <?php 
                             $reasons = array("booking" => "Booking not Successful, Please Try Again Later", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["bookingFailed"]) echo $reasons[$_GET["reason"]]; 
-                            ?>
+                            if ($_GET["bookingFailed"])?><font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
                         </div>
                 </div>
                 </div>
@@ -142,7 +142,7 @@ if (!isset($email)) {
                     <h4>New Educators</h4>
                     <ul class="footer-menu">
                         <li><a href="join.html">Join Pikin</a></li>
-                        <h4>Exisiting Educators</h4>
+                        <li><a href ="#">Exisiting Educators</a></li>
                         <li><a href="#">Partner Centers</a></li>
                     </ul>
                 </div>

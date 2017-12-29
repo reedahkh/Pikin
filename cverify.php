@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,7 +21,7 @@
         // Verify data
         $email = ($_GET['email']); 
         $hash = ($_GET['hash']); 
-        $sql = "SELECT * FROM educators WHERE active='1' AND email='$email' AND hashkey='$hash'";
+        $sql = "SELECT * FROM coordinators WHERE active='1' AND email='$email' AND hashkey='$hash'";
         $result = mysqli_query ($connection, $sql);
         if ($result->num_rows > 0){
             die(header("Location:verified.html"));
@@ -31,8 +31,8 @@
             $sqlx = "UPDATE educators SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
                     $_SESSION['email'] = $email;
-                    $_SESSION['EducatorID'] = $EducatorID;
-                    header('location:esetup.php');
+                    $_SESSION['CoordinatorID'] = $CoordinatorID;
+                    header('location:csetup.php');
                 
                 } 
             
@@ -41,7 +41,7 @@
     }
                  
     else {
-        die(header("location:esignup.php"));
+        die(header("location:csignup.php"));
     }
 ?>
 
