@@ -4,6 +4,8 @@ include("dbconnection.php"); //creates database connection
 $EducatorID = $_SESSION['EducatorID'];
 if (!isset($EducatorID)) {
   header('Location:elogin.php');
+}
+
 ?>
 <!doctype html>
 <html>
