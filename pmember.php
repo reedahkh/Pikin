@@ -1,15 +1,23 @@
 <?php
-session_start();
-include("dbconnection.php"); //creates database connection
-$ParentID = $_SESSION['ParentID'];
-if (!isset($ParentID)) {
-  header('Location:login.php');
-}
-else {
-  $query = "SELECT * FROM parents WHERE ParentID = '$ParentID'"; 
-  $userdetails =  mysqli_query ($connection, $query);
-  $data = mysqli_fetch_assoc($userdetails);
-}
+  session_start();
+  include("dbconnection.php"); //creates database connection
+  $ParentID = $_SESSION['ParentID'];
+  if (!isset($ParentID)) {
+    header('Location:login.php');
+  }
+  else {
+    $query = "SELECT * FROM parents WHERE ParentID = '$ParentID'"; 
+    $userdetails =  mysqli_query ($connection, $query);
+    $data = mysqli_fetch_assoc($userdetails);
+    $queryx = "SELECT * FROM booking WHERE ParentID = '$ParentID'";
+    $result = mysqli_query($connection, $queryx);
+    if ($result->num_rows > 0){
+      while ($row = mysqli_fetch_assoc ($result)) {
+        $bookings[] = $row;
+      }
+    }	 
+  }
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -143,17 +151,26 @@ else {
 
 
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
-                      <?php
-                      $sql = "SELECT from "
-                  
-                      ?>
-                      <center>
+                        <ul>
                         
-                      <img src="img/notfound.png" width="50px" style="opacity: .7">
-                      <h5 style="font-weight: normal; text-transform: none;">
-                        You have not made any bookings yet
-                      </h5>
-                      </center>
+                        </ul>
+
+                        <?php if(isset($bookings)) { ?>
+
+                          <ul> <?php foreach($bookings as $booking) { ?>
+                            <li><?php print_r($booking);?></li>
+                            <?php } ?>
+                          </ul>
+
+                        <?php } else { ?>
+                          <center>
+                        
+                            <img src="img/notfound.png" width="50px" style="opacity: .7">
+                            <h5 style="font-weight: normal; text-transform: none;">
+                              You have not made any bookings yet
+                            </h5>
+                        </center> <?php } ?>
+                                             
                     </div>
 
 
