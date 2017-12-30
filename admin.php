@@ -1,14 +1,20 @@
 <?php
-include('dbconnection.php');
+  session_start();
+  include("dbconnection.php");
+  $AdminID = $_SESSION ['AdminID'];
+  if (!isset($AdminID)) {
+    header('Location:asignin.php');
+  }
+  else {
+    $query = "SELECT * from admin where AdminID = '$AdminID' ";
+    $userdetails =  mysqli_query ($connection, $query);
+    $data = mysqli_fetch_assoc($userdetails);
 
-
-$query = 'SELECT * FROM parents WHERE email = "fareedakabeer@gmail.com"';
-
-$userdetails =  mysqli_query ($connection, $query);
-
-$data = mysqli_fetch_assoc($userdetails);
-
-
+    $firstname = $data["firstname"];
+    $lastname = $data["lastname"];
+    $address = $data["address"];
+    $postcode = $data["postcode"];
+  }
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -93,7 +99,7 @@ $data = mysqli_fetch_assoc($userdetails);
                     <div class="col-md-12">                      
                     <h5 class="tittle" style="font-weight: normal; text-transform: none; line-height: 1.4"> 
                       <span style="margin-bottom: 10px; font-size: 14px">
-                        Welcome Admin,
+                        Welcome Admin, <?=$firstname?> <?=$lastname?>
                       </span>
                       <br>
                     </h5>
@@ -106,7 +112,23 @@ $data = mysqli_fetch_assoc($userdetails);
 
 
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
+                      <?php 
+                      $queryc = "SELECT * from coordinators where active = '1'";
+                      $resultc = mysqli_query ($connection, $queryc);
+                      $resultc_no = mysqli_num_rows ($resultc);
+
+                      $querye = "SELECT * from educators where active = '1'";
+                      $resulte = mysqli_query ($connection, $querye);
+                      $resulte_no = mysqli_num_rows ($resulte);
+
+                      $queryp = "SELECT * from parents where active = '1'";
+                      $resultp = mysqli_query ($connection, $queryp);
+                      $resultp_no = mysqli_num_rows ($resultp);
                       
+                      if ($resultc_no > 0) {
+                        
+                         
+                      ?>
 
                         <div class="col-md-4">
                 <div style="width: 100%; min-height: 100px; background: white; padding: 20px 20px; border: 1px solid #ddd; box-shadow: 0px 0px 5px 0px gainsboro; border-radius: 3px; padding-top: 20px">
@@ -120,16 +142,21 @@ $data = mysqli_fetch_assoc($userdetails);
           <center>
 
             <h3 style="font-weight: 500; text-transform: none;">
-              1,200
+              <?=$resultc_no?>
             </h3>
             <h4 style="font-weight: 500; text-transform: none;">
               Coordinators
             </h4>
           </center>
+          <?php
+            }
+
+            if ($resulte_no > 0) {        
+          ?>
       <br>
       <br>
                  
-                 <a href="admin-users.php">   
+                 <a href="admin-coordinators.php">   
         <div style="width: 100%; background: #444; color: rgba(255,255,255,.9); font-weight: bold; padding: 15px 20px; border: 1px solid #ddd; box-shadow: 0px 0px 5px 0px gainsboro; border-radius: 5px; ">
                     View <i class="fa fa-chevron-right pull-right" style="margin-top: 0px"></i>
                 </div>
@@ -139,6 +166,7 @@ $data = mysqli_fetch_assoc($userdetails);
 
 
                         <div class="col-md-4">
+                          
                 <div style="width: 100%; min-height: 100px; background: white; padding: 20px 20px; border: 1px solid #ddd; box-shadow: 0px 0px 5px 0px gainsboro; border-radius: 3px; padding-top: 20px">
                     <span class="pull-right" style="position:absolute; left:75%;background: red;opacity: .8; color: white; padding: 6px; border-radius: 100%">
         <i class="fa fa-star"></i>
@@ -150,16 +178,20 @@ $data = mysqli_fetch_assoc($userdetails);
           <center>
 
             <h3 style="font-weight: 500; text-transform: none;">
-              900
+              <?=$resulte_no?>
             </h3>
             <h4 style="font-weight: 500; text-transform: none;">
               Educators
             </h4>
           </center>
+          <?php
+            }
+            if ($resultp_no > 0) {
+          ?>
       <br>
       <br>
                  
-                 <a href="admin-users.php">   
+                 <a href="admin-educators.php">   
         <div style="width: 100%; background: #444; color: rgba(255,255,255,.9); font-weight: bold; padding: 15px 20px; border: 1px solid #ddd; box-shadow: 0px 0px 5px 0px gainsboro; border-radius: 5px; ">
                     View <i class="fa fa-chevron-right pull-right" style="margin-top: 0px"></i>
                 </div>
@@ -180,16 +212,19 @@ $data = mysqli_fetch_assoc($userdetails);
           <center>
 
             <h3 style="font-weight: 500; text-transform: none;">
-              5,200
+              <?=$resultp_no?>
             </h3>
             <h4 style="font-weight: 500; text-transform: none;">
               Parents
             </h4>
           </center>
+          <?php
+            }
+          ?>
       <br>
       <br>
                  
-                 <a href="admin-users.php">   
+                 <a href="admin-parents.php">   
         <div style="width: 100%; background: #444; color: rgba(255,255,255,.9); font-weight: bold; padding: 15px 20px; border: 1px solid #ddd; box-shadow: 0px 0px 5px 0px gainsboro; border-radius: 5px; ">
                     View <i class="fa fa-chevron-right pull-right" style="margin-top: 0px"></i>
                 </div>
