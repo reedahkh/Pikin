@@ -1,11 +1,21 @@
 <?php
-session_start();
-include("dbconnection.php"); //creates database connection
-$EducatorID = $_SESSION['EducatorID'];
-if (!isset($EducatorID)) {
-  header('Location:elogin.php');
-}
+    session_start();
+    include("dbconnection.php"); //creates database connection
+    $EducatorID = $_SESSION['EducatorID'];
+    if (!isset($EducatorID)) {
+        header('Location:elogin.php');
+    }
 
+    else {
+        
+        $sql = "SELECT CoordinatorID, firstname, lastname from coordinators";
+        $result = mysqli_query ($connection, $sql);	
+        if ($result->num_rows > 0){
+            while ($row = mysqli_fetch_assoc ($result)) {
+                $coordinators[] = $row;
+            }
+        }	 
+    }
 ?>
 <!doctype html>
 <html>
@@ -137,12 +147,18 @@ if (!isset($EducatorID)) {
                                 <input type="text" name="servicehours" placeholder="E.g: 2 hours" required autocomplete="off" style="padding: 15px 30px">
                             </div>
                         </div>
+                        
                         <div class="form-text ">
                             <span class="text-only" style="font-size: 16px; font-weight: normal">Select Educator</span>
-                            <select name="typeofservice" >
-                                <option name="typeofservice" value=""><?php echo $data["firstname"]. " ". $data["lastname"] ;?></option>
+                            <select name="coordinator" >
+                            <?php foreach($coordinators as $coordinator) { ?>
+                                
+                                <option name="coordinator" value="<?php echo $coordinator["CoordinatorID"]; ?>"><?php echo $coordinator["firstname"]. " " . $coordinator["lastname"]; ?></option>
+                               
+                            <?php } ?>
                             </select>
                         </div>
+                     
                         <div class="form-text text-holder">
                             <span class="text-only" style="font-size: 16px; font-weight: normal">Preferred method of payment.</span>
                             <input type="radio" name="paymentmethod" value="Paypal" class="hno-radiobtn" id="rad1"><label for="rad1" style="font-size: 16px; font-weight: bold">Paypal</label>
