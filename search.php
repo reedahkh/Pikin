@@ -131,7 +131,7 @@ $sql = "SELECT * from educators where postcode ='$postcode'";
       </div>
       <div class="col-md-2">
 
-        <button class="btn btn-success pull-right" name="book"> <a href="booking.php">
+        <button class="btn btn-success pull-right" name="book"> <a href="booking.php?EducatorID=<?=$row['EducatorID']?>">
           Book </a><i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i>
         </button>
       </div>

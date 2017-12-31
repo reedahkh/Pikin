@@ -2,8 +2,8 @@
 session_start();
 include("dbconnection.php");
 
-$email = $_SESSION['email'];
-if (!isset($email)) {
+$ParentID = $_SESSION['ParentID'];
+if (!isset($ParentID)) {
     header('Location:login.php');
 }
 ?>
@@ -42,7 +42,7 @@ if (!isset($email)) {
                         <div style="height: 1px;" role="main" aria-expanded="false" class="navbar-collapse collapse" id="bs">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="booking.php">Family DayCare Educator Booking Service</a><li>
+                                <li><a href="index.php">Family DayCare Educator Booking Service</a><li>
                                 <li><a class="login-button" href="signin.php">Login/Sign-Up</a></li>
                                 <li class="support-button-holder support-dropdown">
                                     <a class="support-button" href="#">Support</a>

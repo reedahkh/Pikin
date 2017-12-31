@@ -194,7 +194,7 @@
                             <br>
 
                         <div class="pricing-link">
-                            <a class="ybtn" href="booking.php">Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i></a>
+                            <a class="ybtn" href="booking.php?EducatorID=<?=$row['EducatorID']?>">Book <i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i></a>
                         </div>
                     </div>
                 </div>
