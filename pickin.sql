@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 01, 2018 at 11:54 AM
+-- Generation Time: Jan 01, 2018 at 01:20 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.6
 
@@ -45,14 +45,14 @@ CREATE TABLE `booking` (
   `BookingID` int(200) NOT NULL,
   `ParentID` int(200) NOT NULL,
   `EducatorID` int(250) NOT NULL,
-  `postcode` int(11) NOT NULL,
-  `suburb` varchar(250) NOT NULL,
-  `typeofservice` text NOT NULL,
-  `day` char(200) NOT NULL,
-  `starttime` time(6) NOT NULL,
-  `endtime` time(6) NOT NULL,
-  `paymentmethod` text NOT NULL,
-  `timestamp` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+  `postcode` int(11) DEFAULT NULL,
+  `suburb` varchar(250) DEFAULT NULL,
+  `typeofservice` text,
+  `day` char(200) DEFAULT NULL,
+  `starttime` time(6) DEFAULT NULL,
+  `endtime` time(6) DEFAULT NULL,
+  `paymentmethod` text,
+  `timestamp` timestamp(6) NULL DEFAULT CURRENT_TIMESTAMP(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -83,15 +83,15 @@ CREATE TABLE `coordinators` (
   `CoordinatorID` int(200) NOT NULL,
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
-  `phonenumber` varchar(50) NOT NULL,
+  `phonenumber` varchar(50) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
-  `address` varchar(250) NOT NULL,
-  `suburb` varchar(50) NOT NULL,
-  `postcode` int(20) NOT NULL,
-  `avatar` varchar(250) NOT NULL DEFAULT 'default.jpg',
+  `address` varchar(250) DEFAULT NULL,
+  `suburb` varchar(50) DEFAULT NULL,
+  `postcode` int(20) DEFAULT NULL,
+  `avatar` varchar(250) DEFAULT 'default.jpg',
   `password` varchar(30) NOT NULL,
-  `hashkey` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '0'
+  `hashkey` varchar(32) DEFAULT NULL,
+  `active` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -115,18 +115,18 @@ CREATE TABLE `educators` (
   `lastname` text NOT NULL,
   `email` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
-  `hashkey` varchar(32) NOT NULL,
-  `phonenumber` varchar(30) NOT NULL,
-  `address` varchar(250) NOT NULL,
-  `suburb` varchar(250) NOT NULL,
-  `postcode` int(30) NOT NULL,
+  `hashkey` varchar(32) DEFAULT NULL,
+  `phonenumber` varchar(30) DEFAULT NULL,
+  `address` varchar(250) DEFAULT NULL,
+  `suburb` varchar(250) DEFAULT NULL,
+  `postcode` int(30) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT 'default.jpg',
-  `numkids` varchar(250) NOT NULL,
-  `ageofkids` varchar(50) NOT NULL,
-  `typeofservice` varchar(250) NOT NULL,
-  `servicehours` varchar(250) NOT NULL,
+  `numkids` varchar(250) DEFAULT NULL,
+  `ageofkids` varchar(50) DEFAULT NULL,
+  `typeofservice` varchar(250) DEFAULT NULL,
+  `servicehours` varchar(250) DEFAULT NULL,
   `rating` int(5) DEFAULT '0',
-  `active` int(1) NOT NULL DEFAULT '0'
+  `active` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -157,23 +157,23 @@ CREATE TABLE `parents` (
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
   `email` varchar(30) NOT NULL,
-  `age` int(50) NOT NULL,
+  `age` int(50) DEFAULT NULL,
   `password` varchar(30) NOT NULL,
-  `hashkey` varchar(32) NOT NULL,
-  `paymentmethod` text NOT NULL,
-  `phonenumber` varchar(30) NOT NULL,
-  `homeaddress` varchar(255) NOT NULL,
-  `homesuburb` varchar(50) NOT NULL,
-  `homepostcode` varchar(50) NOT NULL,
-  `officeaddress` varchar(255) NOT NULL,
-  `officesuburb` varchar(50) NOT NULL,
-  `officepostcode` varchar(50) NOT NULL,
-  `image` varchar(200) NOT NULL,
-  `numkids` varchar(100) NOT NULL,
-  `ageofkids` varchar(30) NOT NULL,
-  `typeofservice` varchar(200) NOT NULL,
-  `servicehours` varchar(50) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT '0'
+  `hashkey` varchar(32) DEFAULT NULL,
+  `paymentmethod` text,
+  `phonenumber` varchar(30) DEFAULT NULL,
+  `homeaddress` varchar(255) DEFAULT NULL,
+  `homesuburb` varchar(50) DEFAULT NULL,
+  `homepostcode` varchar(50) DEFAULT NULL,
+  `officeaddress` varchar(255) DEFAULT NULL,
+  `officesuburb` varchar(50) DEFAULT NULL,
+  `officepostcode` varchar(50) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `numkids` varchar(100) DEFAULT NULL,
+  `ageofkids` varchar(30) DEFAULT NULL,
+  `typeofservice` varchar(200) DEFAULT NULL,
+  `servicehours` varchar(50) DEFAULT NULL,
+  `active` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
