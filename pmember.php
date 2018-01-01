@@ -9,7 +9,7 @@
     $query = "SELECT * FROM parents WHERE ParentID = '$ParentID'"; 
     $userdetails =  mysqli_query ($connection, $query);
     $data = mysqli_fetch_assoc($userdetails);
-    $queryx = "SELECT * FROM booking WHERE ParentID = '$ParentID'";
+    $queryx = "SELECT * FROM booking WHERE ParentID = '$ParentID' LEFT OUTER JOIN educators ON booking.EducatorID = educators.EducatorID ";
     $result = mysqli_query($connection, $queryx);
     if ($result->num_rows > 0){
       while ($row = mysqli_fetch_assoc ($result)) {
@@ -151,25 +151,20 @@
 
 
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
-                        <ul>
                         
-                        </ul>
 
-                        <?php if(isset($bookings)) { ?>
+                        <?php if(isset($bookings)) { 
 
-                          <ul> <?php foreach($bookings as $booking) { ?>
-                            <li><?php print_r($booking);?></li>
-                            <?php } ?>
-                          </ul>
-
-                        <?php } else { ?>
+                          foreach($bookings as $booking) { ?>
+                                     
                           <center>
                         
                             <img src="img/notfound.png" width="50px" style="opacity: .7">
                             <h5 style="font-weight: normal; text-transform: none;">
-                              You have not made any bookings yet
+                              You have made <?php echo $booking?> bookings 
                             </h5>
-                        </center> <?php } ?>
+                        </center> 
+                        <?php } ?>
                                              
                     </div>
 
@@ -178,6 +173,12 @@
 
 
                   <div style="padding: 10px 0px; margin-bottom: 10px">
+                    <?php 
+                    else{
+
+                    
+
+                    ?>
                       <div class="col-md-1 col-xs-2"> 
                     <h6 style="text-transform: none;  font-size: 14px; font-weight: normal; color: #404040">
                         Date:
@@ -185,13 +186,13 @@
                       </div>            
                       <div class="col-md-9 col-xs-8">                        
                     <h6 style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040">
-                      01 January 2017
+                      <?php echo $row["timestamp"];?>
                     </h6>
                       </div> 
                       <div class="col-md-2 col-xs-2">                        
 
                     <h6 class="pull-right" style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040; margin-right: 25px">
-                      Amount
+                      Service
                     </h6>
                       </div>
                       <div class="clearfix"></div> 
@@ -201,10 +202,10 @@
                       </div>
                       <div class="col-md-8 col-xs-7">
                         <h6 style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                          Habu Mohammed 
+                           <?php echo $row["firstname"]." ".$row["lastname"]; ?>
                         </h6>
                         <p style="margin-bottom: 0px">
-                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;Ottawa
+                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $row["suburb"];?>
                         </p>
                         <p style="margin-bottom: 0px; opacity: .5">
                           <i class="fa fa-star" style="color: orange"></i>
@@ -216,11 +217,17 @@
                       </div>
                       <div class="col-md-3 col-xs-3">
                         <h6 class="pull-right" style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                          $300.00
+                          <?php echo $row["typeofservice"];?>
                         </h6>
                       </div>
                       <div class="clearfix"></div>
                     </div>
+                    <?php
+          }
+                mysqli_free_result ($result);
+                mysqli_close ($connection);
+    }
+    ?>
 
 
                   </div>

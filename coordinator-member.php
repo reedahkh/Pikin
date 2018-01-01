@@ -1,14 +1,18 @@
 <?php
-session_start();
-include('dbconnection.php');
-$CoordinatorID = $_SESSION['CoordinatorID'];
-if (!isset($CoordinatorID)) {
+  session_start();
+  include('dbconnection.php');
+  $CoordinatorID = $_SESSION['CoordinatorID'];
+  if (!isset($CoordinatorID)) {
   header('Location:clogin.php');
-}
-else {
-$query = "SELECT * FROM coordinators WHERE CoordinatorID = '$CoordinatorID'";
-$userdetails =  mysqli_query ($connection, $query);
-$data = mysqli_fetch_assoc($userdetails);
+  }
+  else {
+    $query = "SELECT * FROM coordinators WHERE CoordinatorID = '$CoordinatorID'";
+    $userdetails =  mysqli_query ($connection, $query);
+    $data = mysqli_fetch_assoc($userdetails);
+
+    $firstname = $data["firstname"];
+    $lastname = $data["lastname"];
+
 }
 ?>
 <!doctype html>
@@ -89,6 +93,7 @@ $data = mysqli_fetch_assoc($userdetails);
                <?=$data['firstname']?> <?=$data['lastname']?>
              </h5>
                           <p style="font-size: 16px"> <?=$data['address']?> </p>
+                          <p style="font-size: 16px"> <?=$data['suburb']?></p>
                           <p style="font-size: 16px">  <?=$data['postcode']?></p>
 
            </div>
@@ -124,6 +129,14 @@ $data = mysqli_fetch_assoc($userdetails);
                 
                 <!-- ABOUT ME -->
                 <div role="tabpanel" class="tab-pane fade in active" id="about-me">
+                  <?php
+                    $sql = "SELECT * FROM educators WHERE CoordinatorID = '$CoordinatorID'";
+                    $result = mysqli_query($connection, $sql);
+                    $result_no = mysqli_num_rows ($result);
+
+                    if ($result_no > 0) {
+
+                  ?>
                   
                   <div class="inside-sec"> 
                     <div class="col-md-12">
@@ -137,11 +150,13 @@ $data = mysqli_fetch_assoc($userdetails);
                       <div style="width: 100%; height: 10px"></div>
                       Assigned Educators:
                      <span style="font-weight: bold; font-size: 20px">
-                       23
+                       <?=$result_no?>
                      </span>
                     </h5>
                     </div>
-                    
+                    <?php
+                      }
+                    ?>
                   </div>
                   <br>
                   <br>
@@ -162,6 +177,9 @@ $data = mysqli_fetch_assoc($userdetails);
 
 
                   <div style="padding: 30px 20px; margin-bottom: 10px; background: white">
+                    <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        ?>
 
                         <div class="col-md-6" style="padding: 5px">
                           <div style=" border: 1px solid #ddd; padding: 15px 10px; border-radius: 5px; width: 100%">
@@ -170,15 +188,15 @@ $data = mysqli_fetch_assoc($userdetails);
                           </div>
                           <div class="col-md-9">
                             <span style="font-size: 18px">
-                              Habu Mohammed 
+                              <?=$row['firstname']?> <?=$row['lastname']?>
                             </span><br>
                             <div style="margin-top: 5px"></div>
                             <span style="font-size: 16px;color: #d9534f; ">
-                              habu@gmail.com &nbsp;
+                             <?=$row['email']?> &nbsp;
                             </span><br class="visible-md visible-lg">
                             <div style="margin-top: 5px"></div>
                             <span style="font-size: 16px;">
-                              <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;Ottawa
+                              <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?=$row['suburb']?>
                             </span>
                             <br>
 
@@ -189,33 +207,14 @@ $data = mysqli_fetch_assoc($userdetails);
                     <div class="clearfix"></div>
                         </div>
                         </div>
+                        <?php
+          }
+                mysqli_free_result ($result);
+                mysqli_close ($connection);
+    
+?>
 
-                            <div class="col-md-6" style="padding: 5px">
-                          <div style=" border: 1px solid #ddd; padding: 15px 10px; border-radius: 5px; width: 100%">
-                          <div class="col-md-3" style="padding: 4px">
-                          <img src="images/default.jpg" width="100%" style="border-radius: 5px">        
-                          </div>
-                          <div class="col-md-9">
-                            <span style="font-size: 18px">
-                              Habu Mohammed 
-                            </span><br>
-                            <div style="margin-top: 5px"></div>
-                            <span style="font-size: 16px;color: #d9534f; ">
-                              habu@gmail.com &nbsp;
-                            </span><br class="visible-md visible-lg">
-                            <div style="margin-top: 5px"></div>
-                            <span style="font-size: 16px;">
-                              <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;Ottawa
-                            </span>
-                            <br>
-
-                            <a href="educator-history.php" class="btn btn-success btn-sm pull-right">
-                              View History <i class="fa fa-chevron-circle-right" style="margin-left: 5px;color: rgba(0,0,0,.4);"></i>
-                            </a>
-                          </div>
-                    <div class="clearfix"></div>
-                        </div>
-                        </div>
+                            
 
     <div class="clearfix"></div>
                   </div>

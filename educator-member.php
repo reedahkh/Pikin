@@ -1,16 +1,16 @@
 <?php
-session_start();
-include('dbconnection.php');
-$EducatorID = $_SESSION['EducatorID'];
-if (!isset($EducatorID)) {
-  header('Location:elogin.php');
-}
-
-$query = "SELECT * FROM educators WHERE EducatorID = '$EducatorID'";
-$userdetails =  mysqli_query ($connection, $query);
-$data = mysqli_fetch_assoc($userdetails);
-
-
+  session_start();
+  include('dbconnection.php');
+  $EducatorID = $_SESSION['EducatorID'];
+  if (!isset($EducatorID)) {
+    header('Location:elogin.php');
+  }
+  else {
+    $query = "SELECT * FROM educators WHERE EducatorID = '$EducatorID'";
+    $userdetails =  mysqli_query ($connection, $query);
+    $data = mysqli_fetch_assoc($userdetails);
+  
+  }
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -89,7 +89,8 @@ $data = mysqli_fetch_assoc($userdetails);
               
                <?=$data['firstname']?> <?=$data['lastname']?>
              </h5>
-                          <p style="font-size: 16px"> <?=$data['address']?> </p>
+                          <p style="font-size: 16px"> <?=$data['address']?></p>
+                          <p style="font-size: 16px"> <?=$data['suburb']?> </p>
                           <p style="font-size: 16px"><?=$data['postcode']?></p>
 
            </div>
@@ -129,7 +130,7 @@ $data = mysqli_fetch_assoc($userdetails);
                     <div class="col-md-12">                      
                    <h5 class="tittle" style="font-weight: normal; text-transform: none; line-height: 1.2">
                       <span style="margin-bottom: 10px; font-size: 14px">
-                        Welcome Educator,
+                        Welcome Educator, <?=$data['firstname']?>
                       </span>
                       <br>
                       <div style="width: 100%; height: 10px"></div>
@@ -143,11 +144,17 @@ $data = mysqli_fetch_assoc($userdetails);
 
 
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
+                      <?php
+                      $queryx = "SELECT * FROM booking WHERE EducatorID = '$EducatorID' LEFT OUTER JOIN parents ON booking.ParentID = parents.ParentID ";
+                      $result = mysqli_query($connection, $queryx);
+                      if ($result->num_rows > 0){ 
+
+                      ?>
                       <center>
                         
                       <img src="img/notfound.png" width="50px" style="opacity: .7">
                       <h5 style="font-weight: normal; text-transform: none;">
-                        You have not provided any services yet
+                        You have provided <?=$result->num_rows?> services
                       </h5>
                       </center>
                     </div>
@@ -157,6 +164,10 @@ $data = mysqli_fetch_assoc($userdetails);
 
 
                   <div style="padding: 10px 0px; margin-bottom: 10px">
+                    <?php
+                     while ($row = mysqli_fetch_assoc ($result)) {
+                      ?>
+    
                       <div class="col-md-1 col-xs-2"> 
                     <h6 style="text-transform: none;  font-size: 14px; font-weight: normal; color: #404040">
                         Date:
@@ -164,36 +175,41 @@ $data = mysqli_fetch_assoc($userdetails);
                       </div>            
                       <div class="col-md-9 col-xs-8">                        
                     <h6 style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040">
-                      01 January 2017
+                     <?php echo $row["timestamp"];?>
                     </h6>
                       </div> 
                       <div class="col-md-2 col-xs-2">                        
 
                     <h6 class="pull-right" style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040; margin-right: 25px">
-                      Amount
+                      Service
                     </h6>
                       </div>
                       <div class="clearfix"></div> 
                     <div style="background: white;width: 100%; padding: 10px 20px; margin-bottom: 15px">
                       <div class="col-md-1 col-xs-2" style="padding: 6px">
-                        <img src="images/default.jpg" width="100%" style="border-radius: 5px">
+                        <img src="images/default.jpg" enctype="multipart/form-data" width="100%" style="border-radius: 5px">
                       </div>
                       <div class="col-md-8 col-xs-7">
                         <h6 style="text-transform: none;font-weight: 500; margin-bottom: 2px; ">
-                          Habu Mohammed 
+                          <?php echo $row["firstname"]." ".$row["lastname"]; ?>
                         </h6>
                         <p style="margin-bottom: 0px">
-                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;123, Ottawa Rd
+                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $row["homeaddress"];?>
                         </p>
                       </div>
                       <div class="col-md-3 col-xs-3">
                         <h6 class="pull-right" style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                          $300.00
+                          <?php echo $row["typeofservice"];?>
                         </h6>
                       </div>
                       <div class="clearfix"></div>
                     </div>
-
+                    <?php
+          }
+                mysqli_free_result ($result);
+                mysqli_close ($connection);
+    }
+    ?>
 
                   </div>
 
