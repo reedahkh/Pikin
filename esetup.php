@@ -28,9 +28,10 @@
             $servicehours = $_POST['servicehours'];
 
             $sql = "UPDATE educators SET phonenumber = '$phonenumber', address = '$address', suburb = '$suburb', postcode = '$postcode', avatar = '$avatar', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', hoursofservice = '$servicehours') WHERE EducatorID = '$EducatorID' ";
-            print_r($connection, $sql);
+            var_dump($connection, $sql);
 
             if ($connection->query($sql) === TRUE ) {
+                var_dump($connection, $sql);
                 header('Location:educator-member.php');
             }
 
