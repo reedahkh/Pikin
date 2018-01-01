@@ -15,45 +15,50 @@
 
 		$sql = "SELECT email from parents where email ='$email' ";
 		$result = mysqli_query($connection, $sql);
-		$row = mysqli_num_rows ($result);
-		if ($row > 0) {
+		if ($result->num_rows > 0) {
 			die(header('Location:signup.php?signupFailed=true&reason=email'));
 		}
 
-		elseif ($row == 0) {
+		else {
+
+			echo "hello world!";
 		
 		$sqlx = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
-	}
+		
+		}
 
-		if ($connection->query($sqlx) === TRUE) 
-		$subject = "Signup | Verification ";
-		$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/verify.php?email=$email&hash=$hash";
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->CharSet="UTF-8";
-		$mail->Host = 'mail.pikin.com.au';
-		$mail->Port = 25;
-		$mail->Username = 'info@pikin.com.au';
-		$mail->Password = 'Pickcrm#3@1';
-		$mail->SMTPAuth = true;
-		$mail->From = 'info@pikin.com.au';
-		$mail->FromName = 'Pikin';
-		$mail->AddAddress("$email");
-		$mail->AddAddress("info@pikin.com.au");
-		$mail->IsHTML(false);
-		$mail->Subject    = $subject;
-		$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
-		$mail->Body    = $message;
-		
-		
-		if(!$mail->Send())
-		{
-		echo "Mailer Error: " . $mail->ErrorInfo;
+		if ($connection->query($sqlx) == TRUE)  {
+			echo "hello world";
+			$subject = "Signup | Verification ";
+			$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/verify.php?email=$email&hash=$hash";
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->CharSet="UTF-8";
+			$mail->Host = 'mail.pikin.com.au';
+			$mail->Port = 25;
+			$mail->Username = 'info@pikin.com.au';
+			$mail->Password = 'Pickcrm#3@1';
+			$mail->SMTPAuth = true;
+			$mail->From = 'info@pikin.com.au';
+			$mail->FromName = 'Pikin';
+			$mail->AddAddress("$email");
+			$mail->AddAddress("info@pikin.com.au");
+			$mail->IsHTML(false);
+			$mail->Subject    = $subject;
+			$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
+			$mail->Body    = $message;
+			
+			
+			if(!$mail->Send())
+			{
+			echo "Mailer Error: " . $mail->ErrorInfo;
+			}
+			else
+			{
+			die(header('Location:success.html'));
+			}
 		}
-		else
-		{
-		die(header('Location:success.html'));
-		}
+		
 		
 	}
 	else {
