@@ -5,7 +5,6 @@
     if (!isset($EducatorID)) {
         header('Location:elogin.php');
     }
-
     else {
         
         $sql = "SELECT CoordinatorID, firstname, lastname from coordinators";
@@ -15,29 +14,26 @@
                 $coordinators[] = $row;
             }
         }	 
-    
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $phonenumber = $_POST['phonenumber'];
-            $address = $_POST['address'];
-            $suburb = $_POST['suburb'];
-            $postcode = $_POST['postcode'];
-            $avatar = $_POST['avatar'];
-            $numkids = $_POST['numkids'];
-            $ageofkids = $_POST['ageofkids'];
-            $typeofservice = $_POST['typeofservice'];
-            $servicehours = $_POST['servicehours'];
+        
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $phonenumber = $_POST['phonenumber'];
+        $address = $_POST['address'];
+        $suburb = $_POST['suburb'];
+        $postcode = $_POST['postcode'];
+        $avatar = $_POST['avatar'];
+        $numkids = $_POST['numkids'];
+        $ageofkids = $_POST['ageofkids'];
+        $typeofservice = $_POST['typeofservice'];
+        $servicehours = $_POST['servicehours'];
 
-            $sql = "UPDATE educators SET phonenumber = '$phonenumber', address = '$address', suburb = '$suburb', postcode = '$postcode', avatar = '$avatar', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', hoursofservice = '$servicehours') WHERE EducatorID = '$EducatorID' ";
-            var_dump($connection, $sql);
-
-            if ($connection->query($sql) === TRUE ) {
-                var_dump($connection, $sql);
-                header('Location:educator-member.php');
-            }
-
-            else {
-                header('Location:esetup.php?setupFailed=true&reason=error');
-            }
+        $sql = "UPDATE educators SET phonenumber = '$phonenumber', address = '$address', suburb = '$suburb', postcode = '$postcode', avatar = '$avatar', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE EducatorID = '$EducatorID' ";
+        
+        if ($connection->query($sql) === TRUE ) {
+            header('Location:educator-member.php');
+        }
+        else {
+            header('Location:esetup.php?setupFailed=true&reason=error');
         }
     }
 ?>
