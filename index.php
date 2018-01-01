@@ -83,7 +83,6 @@
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact us</a></li>
-                                <li><a class="login-button" href="signin.php">Login/Sign-Up</a></li>
                                 <li class="support-button-holder support-dropdown">
                                     <a class="support-button" href="#">Support</a>
                                     <ul class="dropdown-menu">
@@ -113,7 +112,7 @@
                             </span>
                             <div>
                                 <?php 
-                            $reasons = array("wrongarea" => "Incorrect Area Code", "blank" => "Area Code Field is Empty"); 
+                            $reasons = array("wrongarea" => "Sorry Suburb/Postcode is Not Available!", "blank" => "Please Enter a Valid Postcode/Suburb!"); 
                             
                             if(isset($_GET["NoCode"])){
                                 

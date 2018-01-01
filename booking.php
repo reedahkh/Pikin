@@ -13,7 +13,7 @@ if (!isset($ParentID)) {
             $EducatorID = $_POST['EducatorID'];
             $postcode = $_POST ['postcode'];
             $suburb = $_POST ['suburb'];
-            $typeofservice = $_POST ['typeofservice'];
+            $typeofservice = $_POST ['servicetype'];
             $starttime = $_POST ['starttime'];
             $endtime = $_POST ['endtime'];
             $paymentmethod = $_POST ['paymentmethod'];
@@ -21,7 +21,7 @@ if (!isset($ParentID)) {
                 $days .= $dayofweek . " , ";
             }
 
-            $sql = "INSERT INTO booking (ParentID, EducatorID, postcode, suburb, typeofservice, day, starttime, endtime, paymentmethod) VALUES ('$ParentID', '$EducatorID', '$postcode', '$suburb', '$typeofservice', '$days', '$starttime', '$endtime', '$paymentmethod')";
+            $sql = "INSERT INTO booking (ParentID, EducatorID, postcode, suburb, servicetype, day, starttime, endtime, paymentmethod) VALUES ('$ParentID', '$EducatorID', '$postcode', '$suburb', '$servicetype', '$days', '$starttime', '$endtime', '$paymentmethod')";
     
             if ($connection->query($sql) === TRUE ) {
                 header("Location:bookingsuccess.php");
@@ -111,10 +111,10 @@ if (!isset($ParentID)) {
                         </div>
                         <div class="form-text text-holder">
                             <span class="text-only">Select type of service required</span>
-                            <select name="typeofservice" >
-                                <option name="typeofservice" value="Pickoff and Dropoff">Pick off and drop off</option>
-                                <option name="typeofservice" value="Morning Childcare Service">Morning Childcare Service</option>
-                                <option name="typeofservice" value="Evening Childcare Service">Evening Childcare Service</option>
+                            <select name="servicetype" >
+                                <option name="servicetype" value="Pickoff and Dropoff">Pick off and drop off</option>
+                                <option name="servicetype" value="Morning Childcare Service">Morning Childcare Service</option>
+                                <option name="servicetype" value="Evening Childcare Service">Evening Childcare Service</option>
                             </select>
                         </div>
                         <div class="form-text text-holder">

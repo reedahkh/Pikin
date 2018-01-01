@@ -16,21 +16,31 @@ if (!isset($ParentID)) {
             $homepostcode = $_POST['homepostcode'];
             $officeaddress = $_POST['officeaddress'];
             $officesuburb = $_POST['officesuburb'];
-            $image = $_POST['image'];
+            $officepostcode = $_POST['officepostcode'];
+            $image = ($_FILES['image']['name']);
             $numkids = $_POST['numkids'];
             $ageofkids = $_POST['ageofkids'];
             $typeofservice = $_POST['typeofservice'];
             $servicehours = $_POST['servicehours'];
 
-            $sql = "UPDATE parents SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', homeaddress = '$homeaddress', homesuburb = '$homesuburb', homepostcode = '$homepostcode', officeaddress = '$officeaddress', image = '$image', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE ParentID = '$ParentID' ";
+            $sql = "UPDATE parents SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', homeaddress = '$homeaddress', homesuburb = '$homesuburb', homepostcode = '$homepostcode', officeaddress = '$officeaddress', officesuburb = '$officesuburb', officepostcode = '$officepostcode', image = '$image', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE ParentID = '$ParentID' ";
     
             if ($connection->query($sql) === TRUE ) {
-                header("Location:pmember.php");
-            }
+                $target_dir = "images/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                $extensions_arr = array("jpg","jpeg","png","gif");
+                if( in_array($imageFileType,$extensions_arr) ){
+                    $image_base64 = base64_encode(file_get_contents($_FILES['image']['tmp_name']));
+                    $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
+                    move_uploaded_file($_FILES['image']['tmp_name'],$target_dir.$name);
+                    header("Location:pmember.php");
+                }
 
-            else {
-                header("Location:setup.php?setupFailed=true&reason=error");
-            }       
+                else {
+                    header("Location:setup.php?setupFailed=true&reason=error");
+                } 
+            }          
         }
     }
 
@@ -106,7 +116,7 @@ if (!isset($ParentID)) {
                     <br>
                 <div class="signin-signup-form">
                 <div class="form-items">
-                    <form id="signupform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
+                    <form id="signupform" enctype="multipart/form-data" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
                         <div class="row">
                             <div class="col-md-6 form-text">
                                 <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">

@@ -9,7 +9,13 @@
     $query = "SELECT * FROM educators WHERE EducatorID = '$EducatorID'";
     $userdetails =  mysqli_query ($connection, $query);
     $data = mysqli_fetch_assoc($userdetails);
-  
+    $queryx = "SELECT * FROM booking  LEFT JOIN parents ON booking.ParentID = parents.ParentID WHERE EducatorID = '$EducatorID'";
+    $result = mysqli_query($connection, $queryx);
+    if ($result->num_rows > 0){
+      while ($row = mysqli_fetch_assoc ($result)) {
+        $bookings[] = $row;
+      }
+    } 
   }
 ?>
 <!doctype html>
@@ -144,17 +150,10 @@
 
 
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
-                      <?php
-                      $queryx = "SELECT * FROM booking WHERE EducatorID = '$EducatorID' LEFT OUTER JOIN parents ON booking.ParentID = parents.ParentID ";
-                      $result = mysqli_query($connection, $queryx);
-                      if ($result->num_rows > 0){ 
-
-                      ?>
+                      <?php if(isset($bookings)) { ?>
                       <center>
-                        
-                      <img src="img/notfound.png" width="50px" style="opacity: .7">
                       <h5 style="font-weight: normal; text-transform: none;">
-                        You have provided <?=$result->num_rows?> services
+                        You have provided <?php echo count($bookings) ?> services
                       </h5>
                       </center>
                     </div>
@@ -164,9 +163,7 @@
 
 
                   <div style="padding: 10px 0px; margin-bottom: 10px">
-                    <?php
-                     while ($row = mysqli_fetch_assoc ($result)) {
-                      ?>
+                    <?php foreach($bookings as $booking) { ?>
     
                       <div class="col-md-1 col-xs-2"> 
                     <h6 style="text-transform: none;  font-size: 14px; font-weight: normal; color: #404040">
@@ -175,7 +172,7 @@
                       </div>            
                       <div class="col-md-9 col-xs-8">                        
                     <h6 style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040">
-                     <?php echo $row["timestamp"];?>
+                     <?php echo $booking["timestamp"];?>
                     </h6>
                       </div> 
                       <div class="col-md-2 col-xs-2">                        
@@ -191,27 +188,30 @@
                       </div>
                       <div class="col-md-8 col-xs-7">
                         <h6 style="text-transform: none;font-weight: 500; margin-bottom: 2px; ">
-                          <?php echo $row["firstname"]." ".$row["lastname"]; ?>
+                          <?php echo $booking["firstname"]." ".$booking["lastname"]; ?>
                         </h6>
                         <p style="margin-bottom: 0px">
-                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $row["homeaddress"];?>
+                          <i class="fa fa-location-arrow" style="color: #ccc"></i> &nbsp;<?php echo $booking["homeaddress"];?>
+                        </p>
+                        <p style="margin-bottom: 0px">
+                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $booking["homepostcode"];?>
                         </p>
                       </div>
                       <div class="col-md-3 col-xs-3">
                         <h6 class="pull-right" style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                          <?php echo $row["typeofservice"];?>
+                          <?php echo $booking["servicetype"];?>
                         </h6>
                       </div>
                       <div class="clearfix"></div>
                     </div>
-                    <?php
-          }
-                mysqli_free_result ($result);
-                mysqli_close ($connection);
-    }
-    ?>
-
+                    <?php } ?>
                   </div>
+                   <?php
+                  }
+                  mysqli_free_result ($result);
+                  mysqli_close ($connection);
+                    
+                    ?>
 
                 </div>
                 

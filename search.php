@@ -68,10 +68,10 @@ include ("dbconnection.php");
 <div class="container">
 <?php
 
-if(isset($_POST["search"]) != ""){
+if(isset($_POST["search"])!= ""){
 $postcode = $_POST ['postcode'];
 
-$sql = "SELECT * from educators where postcode ='$postcode'";
+$sql = "SELECT * from educators where postcode ='$postcode' or suburb = '$suburb' ";
 
                 $result = mysqli_query ($connection, $sql);
                 $result_no = mysqli_num_rows($result);

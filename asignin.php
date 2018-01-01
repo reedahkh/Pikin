@@ -1,3 +1,27 @@
+<?php
+session_start();
+include("dbconnection.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST ['email'];
+    $password = $_POST ['password'];
+    $sql = "SELECT * from admin where email = '$email' and password = '$password' ";
+    $result = mysqli_query ($connection, $sql);
+    if ($result->num_rows > 0){
+        while ($row = mysqli_fetch_assoc ($result)) {
+            $_SESSION['AdminID'] = $row['AdminID'];
+            $_SESSION['email'] = $row['email'];
+            header("Location:admin.php");
+        }
+    }   
+    else {
+        header('Location:asignin.php?loginFailed=true&reason=password'); 
+    }
+}
+?>
+
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -51,7 +75,7 @@
                 <div class="form-items">
                     <div class="form-title">Sign in to your account</div>
 
-                    <form id="signinform" method="POST" action="alogin.php">
+                    <form id="signinform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
                         <div class="form-text">
                             <input type="text" name="email" placeholder="E-mail Address" required>
                         </div>
@@ -59,7 +83,7 @@
                             <input type="password" name="password" placeholder="Password" required>
                         </div>
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Sign in</button>
+                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Sign in</button>
                             
                             <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
 

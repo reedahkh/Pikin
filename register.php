@@ -20,15 +20,12 @@
 		}
 
 		else {
-
-			echo "hello world!";
 		
 		$sqlx = "INSERT INTO parents (firstname, lastname, email, password, paymentmethod, hashkey) VALUES ('$firstname', '$lastname', '$email', 'SHA1 ($password)', '$paymentmethod', '$hash')";
 		
 		}
 
 		if ($connection->query($sqlx) == TRUE)  {
-			echo "hello world";
 			$subject = "Signup | Verification ";
 			$message = $message = "Thanks for signing up on Pikin! <br/> Your account has been created, you can login with the following credentials after activating your account by clicking on the link below. <br/>-------------------- <br/>Username: $email <br/>Password: $password <br/>-------------------- <br/>Please click this link to setup your account: <br/>http://pikin.com.au/verify.php?email=$email&hash=$hash";
 			$mail = new PHPMailer();

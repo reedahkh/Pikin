@@ -9,10 +9,10 @@
     $query = "SELECT * FROM coordinators WHERE CoordinatorID = '$CoordinatorID'";
     $userdetails =  mysqli_query ($connection, $query);
     $data = mysqli_fetch_assoc($userdetails);
-
-    $firstname = $data["firstname"];
-    $lastname = $data["lastname"];
-
+    $sql = "SELECT * FROM educators WHERE CoordinatorID = '$CoordinatorID'";
+    $result = mysqli_query($connection, $sql);
+    $result_no = mysqli_num_rows ($result);
+    if ($result_no > 0) {
 }
 ?>
 <!doctype html>
@@ -130,11 +130,7 @@
                 <!-- ABOUT ME -->
                 <div role="tabpanel" class="tab-pane fade in active" id="about-me">
                   <?php
-                    $sql = "SELECT * FROM educators WHERE CoordinatorID = '$CoordinatorID'";
-                    $result = mysqli_query($connection, $sql);
-                    $result_no = mysqli_num_rows ($result);
-
-                    if ($result_no > 0) {
+                    
 
                   ?>
                   
@@ -165,9 +161,9 @@
                     <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
                       <center>
                         
-                      <img src="img/notfound.png" width="50px" style="opacity: .7">
+                      
                       <h5 style="font-weight: normal; text-transform: none;">
-                        You have not been assigned yet
+                        You have been assigned <?=$result_no?> educators
                       </h5>
                       </center>
                     </div>
@@ -192,17 +188,16 @@
                             </span><br>
                             <div style="margin-top: 5px"></div>
                             <span style="font-size: 16px;color: #d9534f; ">
+                              <i class="fa fa-envelope" style="color: #ccc"></i>
                              <?=$row['email']?> &nbsp;
                             </span><br class="visible-md visible-lg">
                             <div style="margin-top: 5px"></div>
                             <span style="font-size: 16px;">
-                              <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?=$row['suburb']?>
+                              <i class="fa fa-phone" style="color: #ccc"></i> &nbsp;<?=$row['phonenumber']?>
                             </span>
                             <br>
 
-                            <a href="educator-history.php" class="btn btn-success btn-sm pull-right">
-                              View History <i class="fa fa-chevron-circle-right" style="margin-left: 5px;color: rgba(0,0,0,.4);"></i>
-                            </a>
+                            
                           </div>
                     <div class="clearfix"></div>
                         </div>

@@ -134,7 +134,7 @@ if (!isset($CoordinatorID)) {
                         <div class="row">
                         
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Finish Signup</button>
+                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Finish Signup</button>
                             <?php 
                             $reasons = array("error" => "There were errors with your registration","suburb" => "" );
                             if (isset($_GET["setupFailed"])) {

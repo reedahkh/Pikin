@@ -9,13 +9,13 @@
     $query = "SELECT * FROM parents WHERE ParentID = '$ParentID'"; 
     $userdetails =  mysqli_query ($connection, $query);
     $data = mysqli_fetch_assoc($userdetails);
-    $queryx = "SELECT * FROM booking WHERE ParentID = '$ParentID' LEFT OUTER JOIN educators ON booking.EducatorID = educators.EducatorID ";
+    $queryx = "SELECT * FROM booking  LEFT JOIN educators ON booking.EducatorID = educators.EducatorID WHERE ParentID = '$ParentID'";
     $result = mysqli_query($connection, $queryx);
     if ($result->num_rows > 0){
       while ($row = mysqli_fetch_assoc ($result)) {
         $bookings[] = $row;
       }
-    }	 
+    }  
   }
 
 ?>
@@ -75,7 +75,6 @@
               <div class="col-md-12">
                 <h4></h4><img src="img/logo.png" class="img-responsive" alt="" style="width: 110px">
                 <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a> 
-                <a href="index.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px" target="_blank" >Home <i class="fa fa-home" style="margin-left: 5px"></i> </a>
               </div>
               <div class="col-sm-6 hidden"> <a id="cd-menu-trigger" href="#0"><span class="cd-menu-icon"></span></a> </div>
             </div>
@@ -136,36 +135,32 @@
                 <div role="tabpanel" class="tab-pane fade in active" id="about-me">
                   <div class="inside-sec"> 
                     <div class="col-md-10 col-xs-8">                      
-                    <h5 class="tittle" style="font-weight: normal; text-transform: none;"> Booking History
+                   <h5 class="tittle" style="font-weight: normal; text-transform: none; line-height: 1.2">
+                      <span style="margin-bottom: 10px; font-size: 14px">
+                        Welcome , <?=$data['firstname']?>
+                      </span>
+                      <br>
+                      <div style="width: 100%; height: 10px"></div>
+                     Your Booking History
                     </h5>
                     </div>
                     <div class="col-md-2 col-xs-4">
-                      <button class="btn btn-success btn-block pull-right" style="box-shadow: 0 0 12px 3px #dedede;margin-top: 12px; border-radius: 15px">
-                        Book <i class="fa fa-plus" style="margin-left: 10px; color: rgba(0,0,0,.3);"></i>
+                      <button class="btn btn-success btn-block pull-right" style="box-shadow: 0 0 12px 3px #dedede;margin-top: 12px; border-radius: 15px"><a href="index.php">
+                        Book <i class="fa fa-plus" style="margin-left: 10px; color: rgba(0,0,0,.3);"></i></a>
                       </button>
                       </div>
                     
                   </div>
                   <br>
                   <br>
-
-
-                    <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
                         
-
-                        <?php if(isset($bookings)) { 
-
-                          foreach($bookings as $booking) { ?>
-                                     
-                          <center>
-                        
-                            <img src="img/notfound.png" width="50px" style="opacity: .7">
-                            <h5 style="font-weight: normal; text-transform: none;">
-                              You have made <?php echo $booking?> bookings 
-                            </h5>
-                        </center> 
-                        <?php } ?>
-                                             
+                        <div style="width: 100%; padding: 50px 20px; background: #fff; margin-bottom: 20px">
+                      <?php if(isset($bookings)) { ?>
+                      <center>
+                      <h5 style="font-weight: normal; text-transform: none;">
+                        You have made <?php echo count($bookings) ?> bookings
+                      </h5>
+                      </center>
                     </div>
 
 
@@ -173,12 +168,8 @@
 
 
                   <div style="padding: 10px 0px; margin-bottom: 10px">
-                    <?php 
-                    else{
-
-                    
-
-                    ?>
+                    <?php foreach($bookings as $booking) { ?>
+    
                       <div class="col-md-1 col-xs-2"> 
                     <h6 style="text-transform: none;  font-size: 14px; font-weight: normal; color: #404040">
                         Date:
@@ -186,7 +177,7 @@
                       </div>            
                       <div class="col-md-9 col-xs-8">                        
                     <h6 style="text-transform: none; margin-left: 10px; font-size: 14px; font-weight: bold; color: #404040">
-                      <?php echo $row["timestamp"];?>
+                     <?php echo $booking["timestamp"];?>
                     </h6>
                       </div> 
                       <div class="col-md-2 col-xs-2">                        
@@ -198,39 +189,34 @@
                       <div class="clearfix"></div> 
                     <div style="background: white;width: 100%; padding: 10px 20px; margin-bottom: 15px">
                       <div class="col-md-1 col-xs-2" style="padding: 6px">
-                        <img src="images/default.jpg" width="100%" style="border-radius: 5px">
+                        <img src="images/default.jpg" enctype="multipart/form-data" width="100%" style="border-radius: 5px">
                       </div>
                       <div class="col-md-8 col-xs-7">
-                        <h6 style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                           <?php echo $row["firstname"]." ".$row["lastname"]; ?>
+                        <h6 style="text-transform: none;font-weight: 500; margin-bottom: 2px; ">
+                          <?php echo $booking["firstname"]." ".$booking["lastname"]; ?>
                         </h6>
                         <p style="margin-bottom: 0px">
-                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $row["suburb"];?>
+                          <i class="fa fa-location-arrow" style="color: #ccc"></i> &nbsp;<?php echo $booking["address"];?>
                         </p>
-                        <p style="margin-bottom: 0px; opacity: .5">
-                          <i class="fa fa-star" style="color: orange"></i>
-                          <i class="fa fa-star" style="color: orange"></i>
-                          <i class="fa fa-star" style="color: orange"></i>
-                          <i class="fa fa-star" style="color: orange"></i>
-                          <i class="fa fa-star" style="color: #ddd"></i>
+                        <p style="margin-bottom: 0px">
+                          <i class="fa fa-map-marker" style="color: #ccc"></i> &nbsp;<?php echo $booking["postcode"];?>
                         </p>
                       </div>
                       <div class="col-md-3 col-xs-3">
                         <h6 class="pull-right" style="text-transform: none;font-weight: 500; margin-bottom: 2px; margin-top: 3px">
-                          <?php echo $row["typeofservice"];?>
+                          <?php echo $booking["servicetype"];?>
                         </h6>
                       </div>
                       <div class="clearfix"></div>
                     </div>
-                    <?php
-          }
-                mysqli_free_result ($result);
-                mysqli_close ($connection);
-    }
-    ?>
-
-
+                    <?php } ?>
                   </div>
+                   <?php
+                  }
+                  mysqli_free_result ($result);
+                  mysqli_close ($connection);
+                    
+                    ?>
 
                 </div>
                 

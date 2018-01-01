@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 01, 2018 at 01:20 PM
+-- Generation Time: Jan 01, 2018 at 11:42 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.6
 
@@ -47,7 +47,7 @@ CREATE TABLE `booking` (
   `EducatorID` int(250) NOT NULL,
   `postcode` int(11) DEFAULT NULL,
   `suburb` varchar(250) DEFAULT NULL,
-  `typeofservice` text,
+  `servicetype` text,
   `day` char(200) DEFAULT NULL,
   `starttime` time(6) DEFAULT NULL,
   `endtime` time(6) DEFAULT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`BookingID`, `ParentID`, `EducatorID`, `postcode`, `suburb`, `typeofservice`, `day`, `starttime`, `endtime`, `paymentmethod`, `timestamp`) VALUES
+INSERT INTO `booking` (`BookingID`, `ParentID`, `EducatorID`, `postcode`, `suburb`, `servicetype`, `day`, `starttime`, `endtime`, `paymentmethod`, `timestamp`) VALUES
 (1, 12, 11, 5006, 'North Adelaide, SA', 'Morning Childcare Service', 'monday ,', '08:00:00.000000', '09:00:00.000000', 'Paypal', '2017-12-30 17:26:46.445208'),
 (2, 12, 11, 5006, 'North Adelaide, SA', 'Morning Childcare Service', 'monday , tuesday ,', '08:00:00.000000', '09:00:00.000000', 'Paypal', '2017-12-30 17:26:46.445208'),
 (3, 10, 0, 5006, 'gavin', 'Morning Childcare Service', 'monday ,', '08:00:00.000000', '09:00:00.000000', 'Credit Card', '2017-12-30 17:26:46.445208'),
@@ -71,7 +71,8 @@ INSERT INTO `booking` (`BookingID`, `ParentID`, `EducatorID`, `postcode`, `subur
 (9, 12, 1, 222, 'www', 'Morning Childcare Service', 'monday ,', '08:00:00.000000', '09:00:00.000000', 'Credit Card', '2018-01-01 00:43:12.039105'),
 (10, 0, 0, 0, '', '', 'monday , tuesday ,', '00:00:00.000000', '00:00:00.000000', '', '2018-01-01 00:54:26.198990'),
 (11, 0, 0, 0, '', '', 'tuesday , wednesday , thursday ,', '00:00:00.000000', '00:00:00.000000', '', '2018-01-01 00:58:13.832363'),
-(12, 12, 2, 0, '', '', 'monday , friday ,', '00:00:00.000000', '00:00:00.000000', '', '2018-01-01 01:00:20.161355');
+(12, 12, 2, 0, '', '', 'monday , friday ,', '00:00:00.000000', '00:00:00.000000', '', '2018-01-01 01:00:20.161355'),
+(13, 30, 2, 333, '444', 'Pickoff and Dropoff', 'monday ,', '09:00:00.000000', '17:00:00.000000', 'Credit Card', '2018-01-01 14:08:12.862539');
 
 -- --------------------------------------------------------
 
@@ -143,8 +144,8 @@ INSERT INTO `educators` (`EducatorID`, `CoordinatorID`, `firstname`, `lastname`,
 (9, 2, 'Nora', 'Roberts', 'nora@yahoo.com', 'nora', '', '+234596873086', '', 'Garfield, Vic', 3814, 'default.jpg', '', '', '', '', 3, 1),
 (10, 0, 'Farida', 'Kabir', 'fareedakabeer@icloud.com', 'SHA1 (ff)', '7e7757b1e12abcb736ab9a754ffb617a', '', '', '', 0, 'default.jpg', '', '', '', '', 0, 1),
 (11, 0, 'Amira', 'Kabir', 'amira@gmail.com', 'SHA1 (a)', '202cb962ac59075b964b07152d234b70', '', '32, Thames Street', 'Gavin', 5006, 'default.jpg', '', '', '', '', 0, 1),
-(12, 0, 'tt', 'tt', 't@yahoo.com', 'SHA1 (t)', '1ecfb463472ec9115b10c292ef8bc986', '', '', '', 0, 'default.jpg', '', '', '', '', 0, 1),
-(13, 0, 'Farida', 'Kabir', 'fareedakabeer@gmail.com', 'SHA1 (f)', '', '8038471835', 'No 1b dar es salam close wuse 2', 'Fct', 900001, 'IMG_3440.JPG', '2', '2,3', 'ww', '2', 0, 0);
+(12, 6, 'tt', 'tt', 't@yahoo.com', 'SHA1 (t)', '1ecfb463472ec9115b10c292ef8bc986', '', '', '', 0, 'default.jpg', '', '', '', '', 0, 1),
+(13, 6, 'Farida', 'Kabir', 'fareedakabeer@gmail.com', 'SHA1 (f)', '', '8038471835', 'No 1b dar es salam close wuse 2', 'Fct', 900001, 'IMG_3440.JPG', '2', '2,3', 'ww', '2', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ CREATE TABLE `parents` (
   `officeaddress` varchar(255) DEFAULT NULL,
   `officesuburb` varchar(50) DEFAULT NULL,
   `officepostcode` varchar(50) DEFAULT NULL,
-  `image` varchar(200) DEFAULT NULL,
+  `image` longtext,
   `numkids` varchar(100) DEFAULT NULL,
   `ageofkids` varchar(30) DEFAULT NULL,
   `typeofservice` varchar(200) DEFAULT NULL,
@@ -182,7 +183,10 @@ CREATE TABLE `parents` (
 
 INSERT INTO `parents` (`ParentID`, `firstname`, `lastname`, `email`, `age`, `password`, `hashkey`, `paymentmethod`, `phonenumber`, `homeaddress`, `homesuburb`, `homepostcode`, `officeaddress`, `officesuburb`, `officepostcode`, `image`, `numkids`, `ageofkids`, `typeofservice`, `servicehours`, `active`) VALUES
 (12, 'Amira', 'Kabir', 'amira@yahoo.com', 24, 'SHA1 (a)', '', 'Paypal', '+2348038471836', 'London Street', 'Gavin', '3004', 'John Street', 'Gavin', '4211', 'IMG_3438.JPG', '2', '3,4', 'Special Care', '3', 1),
-(30, 'Farida', 'Kabir', 'fareedakabeer@gmail.com', 0, 'SHA1 (f)', '49ae49a23f67c759bf4fc791ba842aa2', 'Credit Card', '', 'John Street', 'Adelaide', '5006', '', '', '', 'default.jpg', '0', '0', '', '', 1);
+(30, 'Farida', 'Kabir', 'fareedakabeer@gmail.com', 0, 'SHA1 (f)', '49ae49a23f67c759bf4fc791ba842aa2', 'Credit Card', '8038471835', 'No 1b dar es salam close wuse 2', 'Fct', '900001', 'g', '', '', 'IMG_3600.JPG', '4', '4', 'f', '4', 1),
+(31, 'Farida', 'Kabir', 'fareedakabeer@icloud.com', NULL, 'SHA1 (dd)', '352fe25daf686bdb4edca223c921acea', 'Paypal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 0),
+(32, 'Farida', 'Kabir', 'otracvhf@gmail.com', NULL, 'SHA1 (f)', '50c3d7614917b24303ee6a220679dab3', 'Paypal', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, 0),
+(33, 'Janet', 'Jane', 'j@yahoo.com', NULL, 'SHA1 (j)', '918317b57931b6b7a7d29490fe5ec9f9', 'Paypal', '+23455677899', 'John Street', 'Gavin', '4444', 'James Street', 'Adelaide', '3333', 'IMG_3437.JPG', '3', '3,4,5', 'r', '4', 0);
 
 --
 -- Indexes for dumped tables
@@ -233,12 +237,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `BookingID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `BookingID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `coordinators`
 --
 ALTER TABLE `coordinators`
-  MODIFY `CoordinatorID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `CoordinatorID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `educators`
 --
@@ -248,4 +252,4 @@ ALTER TABLE `educators`
 -- AUTO_INCREMENT for table `parents`
 --
 ALTER TABLE `parents`
-  MODIFY `ParentID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ParentID` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
