@@ -6,6 +6,34 @@ $ParentID = $_SESSION['ParentID'];
 if (!isset($ParentID)) {
     header('Location:login.php');
 }
+    else {
+        if (isset($_POST["submit"])){
+            $firstname = mysqli_escape_string($_POST['firstname']);
+            $lastname = mysqli_escape_string($_POST['lastname']);
+            $phonenumber = mysqli_escape_string($_POST['phonenumber']);
+            $homeaddress = mysqli_escape_string($_POST['homeaddress']);
+            $homesuburb = mysqli_escape_string($_POST['homesuburb']);
+            $homepostcode = mysqli_escape_string($_POST['homepostcode']);
+            $officeaddress = mysqli_escape_string($_POST['officeaddress']);
+            $officesuburb = mysqli_escape_string($_POST['officesuburb']);
+            $image = mysqli_escape_string($_POST['image']);
+            $numkids = mysqli_escape_string($_POST['numkids']);
+            $ageofkids = mysqli_escape_string($_POST['ageofkids']);
+            $typeofservice = mysqli_escape_string($_POST['typeofservice']);
+            $servicehours = mysqli_escape_string($_POST['servicehours']);
+
+            $sql = "UPDATE parents SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', homeaddress = '$homeaddress', homesuburb = 'homesuburb', homepostcode = '$homepostcode', officeaddress = '$officeaddress', image = '$image', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE ParentID = '$ParentID' ";
+    
+            if ($connection->query($sql) === TRUE ) {
+                header("Location:pmember.php");
+            }
+
+            else {
+                header("Location:setup.php?setupFailed=true&reason=error");
+            }       
+        }
+    }
+
 ?>
 <!doctype html>
 <html>
@@ -78,7 +106,7 @@ if (!isset($ParentID)) {
                     <br>
                 <div class="signin-signup-form">
                 <div class="form-items">
-                    <form id="signupform" method="POST" action="setuppr.php">
+                    <form id="signupform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
                         <div class="row">
                             <div class="col-md-6 form-text">
                                 <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">
@@ -152,7 +180,7 @@ if (!isset($ParentID)) {
                             <input type="radio" name="paymentmethod" value="Credit Card" class="hno-radiobtn" id="rad2"><label for="rad2" style="font-size: 16px; font-weight: bold">Credit Card</label>
                         </div>
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Finish Signup</button>
+                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Finish Signup</button>
                             <?php 
                             $reasons = array("error" => "There were errors with your registration", "blank" => "You have left one or more fields blank."); 
                             if ($_GET["setupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
