@@ -7,22 +7,22 @@ if (!isset($ParentID)) {
     header('Location:login.php');
 }
     else {
-        if (isset($_POST["submit"])){
-            $firstname = mysqli_escape_string($_POST['firstname']);
-            $lastname = mysqli_escape_string($_POST['lastname']);
-            $phonenumber = mysqli_escape_string($_POST['phonenumber']);
-            $homeaddress = mysqli_escape_string($_POST['homeaddress']);
-            $homesuburb = mysqli_escape_string($_POST['homesuburb']);
-            $homepostcode = mysqli_escape_string($_POST['homepostcode']);
-            $officeaddress = mysqli_escape_string($_POST['officeaddress']);
-            $officesuburb = mysqli_escape_string($_POST['officesuburb']);
-            $image = mysqli_escape_string($_POST['image']);
-            $numkids = mysqli_escape_string($_POST['numkids']);
-            $ageofkids = mysqli_escape_string($_POST['ageofkids']);
-            $typeofservice = mysqli_escape_string($_POST['typeofservice']);
-            $servicehours = mysqli_escape_string($_POST['servicehours']);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $phonenumber = $_POST['phonenumber'];
+            $homeaddress = $_POST['homeaddress'];
+            $homesuburb = $_POST['homesuburb'];
+            $homepostcode = $_POST['homepostcode'];
+            $officeaddress = $_POST['officeaddress'];
+            $officesuburb = $_POST['officesuburb'];
+            $image = $_POST['image'];
+            $numkids = $_POST['numkids'];
+            $ageofkids = $_POST['ageofkids'];
+            $typeofservice = $_POST['typeofservice'];
+            $servicehours = $_POST['servicehours'];
 
-            $sql = "UPDATE parents SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', homeaddress = '$homeaddress', homesuburb = 'homesuburb', homepostcode = '$homepostcode', officeaddress = '$officeaddress', image = '$image', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE ParentID = '$ParentID' ";
+            $sql = "UPDATE parents SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', homeaddress = '$homeaddress', homesuburb = '$homesuburb', homepostcode = '$homepostcode', officeaddress = '$officeaddress', image = '$image', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', servicehours = '$servicehours' WHERE ParentID = '$ParentID' ";
     
             if ($connection->query($sql) === TRUE ) {
                 header("Location:pmember.php");

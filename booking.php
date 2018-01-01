@@ -6,6 +6,32 @@ $ParentID = $_SESSION['ParentID'];
 if (!isset($ParentID)) {
     header('Location:login.php');
 }
+    
+    else {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+            $ParentID = $_SESSION['ParentID'];
+            $EducatorID = $_POST['EducatorID'];
+            $postcode = $_POST ['postcode'];
+            $suburb = $_POST ['suburb'];
+            $typeofservice = $_POST ['typeofservice'];
+            $starttime = $_POST ['starttime'];
+            $endtime = $_POST ['endtime'];
+            $paymentmethod = $_POST ['paymentmethod'];
+            foreach($_POST['day'] as $dayofweek) {
+                $days .= $dayofweek . " , ";
+            }
+
+            $sql = "INSERT INTO booking (ParentID, EducatorID, postcode, suburb, typeofservice, day, starttime, endtime, paymentmethod) VALUES ('$ParentID', '$EducatorID', '$postcode', '$suburb', '$typeofservice', '$days', '$starttime', '$endtime', '$paymentmethod')";
+    
+            if ($connection->query($sql) === TRUE ) {
+                header("Location:bookingsuccess.php");
+            }
+        
+            else {
+                header('location:booking.php?bookingFailed=true&reason=booking');
+            }
+        }  
+    }
 ?>
 <!doctype html>
 <html>
@@ -71,7 +97,7 @@ if (!isset($ParentID)) {
 </div>
 <div id="page-content" class="container-fluid">
     <div class="container">
-        <form id="booking" action="bookingp.php" method="POST">
+        <form id="booking" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="POST">
         <div class="row">
             <div align="center">
                 <div class="signin-signup-form">
@@ -114,8 +140,9 @@ if (!isset($ParentID)) {
                             <input type="radio" name="paymentmethod" class="hno-radiobtn" id="paypal" value="Paypal"><label for="paypal">Paypal</label>
                             <input type="radio" name="paymentmethod" class="hno-radiobtn" id="cc" value="Credit Card"><label for="cc">Credit Card</label>
                         </div>
+                        <input type="hidden" name="EducatorID" value="<?php echo $_GET['EducatorID']?>" >
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Book Service</button>
+                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Book Service</button>
                             <?php 
                             $reasons = array("booking" => "Booking not Successful, Please Try Again Later", "blank" => "You have left one or more fields blank."); 
                             if ($_GET["bookingFailed"])?><font color="red"><?php echo $reasons[$_GET["reason"]]; 

@@ -1,9 +1,29 @@
 <?php
 session_start();
-include("dbconnection.php"); //creates database connection
+include("dbconnection.php"); 
+
 $CoordinatorID = $_SESSION['CoordinatorID'];
-if (!isset($EducatorID)) {
-  header('Location:clogin.php');
+if (!isset($CoordinatorID)) {
+    header('Location:clogin.php');
+}
+    else {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $firstname = $_POST ['firstname'];
+            $lastname = $_POST ['lastname']; 
+            $phonenumber = $_POST ['phonenumber'];
+            $address = $_POST ['address'];
+            $avatar = $_POST ['avatar'];
+    
+            $sql = "UPDATE coordinators SET firstname = '$firstname', lastname = '$lastname', phonenumber = '$phonenumber', address = '$address', avatar = '$avatar' WHERE CoordinatorID = '$CoordinatorID'";
+            if ($connection->query($sql) === TRUE ) {
+                header('Location:coordinator-member.php');
+            }
+            else {
+                header("Location:csetup.php?setupFailed=true&reason=error");
+                }
+
+        }   
+    }
 ?>
 <!doctype html>
 <html>
@@ -19,7 +39,7 @@ if (!isset($EducatorID)) {
 </head>
 
 <body>
-
+ 
 <div id="header-holder" class="inner-header contact-header">
     <nav id="nav" class="navbar navbar-default navbar-full">
         <div class="container-fluid">
@@ -76,7 +96,7 @@ if (!isset($EducatorID)) {
                     <br>
                 <div class="signin-signup-form">
                 <div class="form-items">
-                    <form id="signupform" method="POST" action="esetuppr.php">
+                    <form id="signupform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
                         <div class="row">
                             <div class="col-md-6 form-text">
                                 <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">
