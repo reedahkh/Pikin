@@ -15,6 +15,29 @@
                 $coordinators[] = $row;
             }
         }	 
+    
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $phonenumber = $_POST['phonenumber'];
+            $address = $_POST['address'];
+            $suburb = $_POST['suburb'];
+            $postcode = $_POST['postcode'];
+            $avatar = $_POST['avatar'];
+            $numkids = $_POST['numkids'];
+            $ageofkids = $_POST['ageofkids'];
+            $typeofservice = $_POST['typeofservice'];
+            $servicehours = $_POST['servicehours'];
+
+            $sql = "UPDATE educators SET phonenumber = '$phonenumber', address = '$address', suburb = '$suburb', postcode = '$postcode', avatar = '$avatar', numkids = '$numkids', ageofkids = '$ageofkids', typeofservice = '$typeofservice', hoursofservice = '$servicehours') WHERE EducatorID = '$EducatorID' ";
+            print_r($connection, $sql);
+
+            if ($connection->query($sql) === TRUE ) {
+                header('Location:educator-member.php');
+            }
+
+            else {
+                header('Location:esetup.php?setupFailed=true&reason=error');
+            }
+        }
     }
 ?>
 <!doctype html>
@@ -88,7 +111,7 @@
                     <br>
                 <div class="signin-signup-form">
                 <div class="form-items">
-                    <form id="signupform" method="POST" action="esetuppr.php">
+                    <form id="signupform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
                         <div class="row">
                             <div class="col-md-6 form-text">
                                 <input type="text" name="firstname" placeholder="First name" required autocomplete="off" style="padding: 15px 30px">
@@ -131,7 +154,7 @@
                                 <p style="margin-top: 10px">
                                     Age range of children you can admit in child care service <br> (Seperate with comma <strong> ","</strong>)
                                 </p>
-                            <input type="text" name="age" placeholder="E.g: 12, 11, 9" required autocomplete="off" style="padding: 15px 30px">
+                            <input type="text" name="ageofkids" placeholder="E.g: 12, 11, 9" required autocomplete="off" style="padding: 15px 30px">
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-text">
@@ -165,14 +188,11 @@
                             <input type="radio" name="paymentmethod" value="Credit Card" class="hno-radiobtn" id="rad2"><label for="rad2" style="font-size: 16px; font-weight: bold">Credit Card</label>
                         </div>
                         <div class="form-button">
-                            <button id="submit" type="submit" class="ybtn ybtn-purple">Finish Signup</button>
+                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Finish Signup</button>
                             <?php 
-                            $reasons = array("error" => "There were errors with your registration","suburb" => "" );
-                            if (isset($_GET["setupFailed"])) {
-                                echo $reasons[$_GET["error"]];
-                            }
-
-                            ?>
+                            $reasons = array("error" => "There were errors with your registration", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["setupFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            ?></font>
                         </div>
                     </form>
                 </div>
