@@ -28,10 +28,16 @@
         }
 
         else {
-            $sqlx = "UPDATE educators SET active='1' WHERE email='$email'";
+            $sqlx = "UPDATE coordinators SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['CoordinatorID'] = $CoordinatorID;
+
+                    $sql = "SELECT * FROM coordinators WHERE active='1' AND email='$email' AND hashkey='$hash'";
+                    $result = mysqli_query ($connection, $sql);
+                    while ($row = mysqli_fetch_assoc ($result)) {
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['CoordinatorID'] = $row['CoordinatorID'];
+                        
+                    }
                     header('location:csetup.php');
                 
                 } 
