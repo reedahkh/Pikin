@@ -3,7 +3,7 @@
   include("dbconnection.php"); //creates database connection
   $ParentID = $_SESSION['ParentID'];
   if (!isset($ParentID)) {
-    header('Location:login.php');
+    header('Location:signin.php');
   }
   else {
     $query = "SELECT * FROM parents WHERE ParentID = '$ParentID'"; 

@@ -3,7 +3,7 @@
   include('dbconnection.php');
   $EducatorID = $_SESSION['EducatorID'];
   if (!isset($EducatorID)) {
-    header('Location:elogin.php');
+    header('Location:esignin.php');
   }
   else {
     $query = "SELECT * FROM educators WHERE EducatorID = '$EducatorID'";

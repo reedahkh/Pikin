@@ -3,7 +3,7 @@ session_start();
 include("dbconnection.php"); //creates database connection
 $email = $_SESSION['email'];
 if (!isset($email)) {
-  header('Location:login.php');
+  header('Location:signin.php');
 }
 else {
   $query = "SELECT * FROM parents WHERE email = '$email'";

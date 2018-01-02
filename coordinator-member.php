@@ -3,7 +3,7 @@
   include('dbconnection.php');
   $CoordinatorID = $_SESSION['CoordinatorID'];
   if (!isset($CoordinatorID)) {
-  header('Location:clogin.php');
+  header('Location:csignin.php');
   }
   else {
     $query = "SELECT * FROM coordinators WHERE CoordinatorID = '$CoordinatorID'";
