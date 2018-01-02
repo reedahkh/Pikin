@@ -88,7 +88,7 @@
             <div class="side-bar" style=""> 
            <div class="col-md-12" style="padding: 0px">
             <div style="padding: 30px; padding-bottom: 0px">
-                <img src="images/<?php echo $data["image"]; ?>" class="img-responsive" alt="" style="border-radius: 100%; width: 100px; height: 100px; margin-top: 20px">                
+                <img src="http://pikin.com.au/images/<?php echo $data["image"]; ?>" class="img-responsive" alt="" style="border-radius: 100%; width: 100px; height: 100px; margin-top: 20px">                
             </div>
               </div>
            <div class="col-md-12">
