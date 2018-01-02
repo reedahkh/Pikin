@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/slick.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+ <link rel="stylesheet" href="css/animate/aos.css">
 </head>
 
 <body>
@@ -101,17 +102,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="big-title">Find a Family Day Care Educator <br>
+                    <div class="big-title" data-aos="fade-down">Find a Family Day Care Educator <br>
                         <span>near you!</span>
                     </div>
-                    <div class="educators-search-holder">
+                    <div class="educators-search-holder" data-aos="fade-down">
                         <form id="educators-search" action="search.php" method="POST">
-                            <input id="educators-text" type="text" name="postcode" placeholder="Enter your postcode.." />
+                            <input id="educators-text" type="text" name="postcode" placeholder="Search with postcode or surburb.." />
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
-                            <div>
-                                <?php 
+                            <?php 
                             $reasons = array("wrongarea" => "Sorry Suburb/Postcode is Not Available!", "blank" => "Please Enter a Valid Postcode/Suburb!"); 
                             
                             if(isset($_GET["NoCode"])){
@@ -120,7 +120,6 @@
                                 <font color="red"><?php echo $reasons[$_GET["reason"]]; 
                                 
                             }?></font>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -128,7 +127,7 @@
                     <div class="arrow-button-holder">
                         <a href="#pricing">
                             <div class="button-text">We are here to assist you</div>
-                            <div class="arrow-icon">
+                            <div class="arrow-icon" data-aos="fade-down">
                                 <i class="htfy htfy-arrow-down"></i>
                             </div>
                         </a>
@@ -160,7 +159,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="pricing-box pricing-color1">
                     <div class="pricing-content">
-                        <div class="pricing-icon" style="background: url(images/<?=$row['avatar']?>);background-size: contain;">
+                        <div class="pricing-icon" data-aos="fade-up" style="background: url(images/<?=$row['avatar']?>);background-size: contain;">
                         </div>
                         <div class="pricing-title"><?=$row['firstname']?> <?=$row['lastname']?></div>
                         <div class="pricing-details">
@@ -234,8 +233,8 @@
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="pricing-box pricing-color1">
-                    <div class="pricing-content">
-                        <div class="pricing-icon">
+                    <div class="pricing-content" data-aos="flip-left">
+                        <div class="pricing-icon" data-aos="flip-left">
                             <div class="special-gradiant"></div>
                         </div>
                         <div class="pricing-title">Find Educators</div>
@@ -255,8 +254,8 @@
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="pricing-box pricing-color2">
-                    <div class="pricing-content">
-                        <div class="pricing-icon">
+                    <div class="pricing-content" data-aos="flip-left">
+                        <div class="pricing-icon" data-aos="flip-left">
                             <div class="special-gradiant"></div>
                         </div>
                         <div class="pricing-title">Register & Book</div>
@@ -276,8 +275,8 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="pricing-box pricing-color3">
-                    <div class="pricing-content">
-                        <div class="pricing-icon">
+                    <div class="pricing-content" data-aos="flip-left">
+                        <div class="pricing-icon" data-aos="flip-left">
                             <div class="special-gradiant"></div>
                         </div>
                         <div class="pricing-title">Enjoy Our Features</div>
@@ -313,28 +312,28 @@
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="mfeature-box">
-                    <div class="mfeature-icon">
+                    <div class="mfeature-icon" data-aos="zoom-in-down">
                         <i class="htfy htfy-tick"></i>
                     </div>
-                    <div class="mfeature-title">9,000+ educators</div>
+                    <div class="mfeature-title" data-aos="zoom-in-down">9,000+ educators</div>
                     <div class="mfeature-details">Here at Pikin, we promised and has also ensured you have 9,000+ educators to choose from.</div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="mfeature-box">
-                    <div class="mfeature-icon">
+                    <div class="mfeature-icon" data-aos="zoom-in-down">
                         <i class="htfy htfy-tick"></i>
                     </div>
-                    <div class="mfeature-title">Drop Off & Pick Up</div>
+                    <div class="mfeature-title" data-aos="zoom-in-down">Drop Off & Pick Up</div>
                     <div class="mfeature-details">We didn't stop there, we also ensured you can drop your child off or get your child picked up and droped off.</div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
                 <div class="mfeature-box">
-                    <div class="mfeature-icon">
+                    <div class="mfeature-icon" data-aos="zoom-in-down">
                         <i class="htfy htfy-tick"></i>
                     </div>
-                    <div class="mfeature-title">Best Support</div>
+                    <div class="mfeature-title" data-aos="zoom-in-down">Best Support</div>
                     <div class="mfeature-details">We have made it possible to get in touch with us via various platforms as we believe communication is key.</div>
                 </div>
             </div>
@@ -429,8 +428,8 @@
                 <div class="footer-menu-holder">
                     <h4>Others</h4>
                     <ul class="footer-menu">
-                        <li><a href="asignin.php">Admin Login</a></li>
-                        <li><a href="#">Sign Up</a></li>
+                       <li><a href="asignin.php">Admin Login</a></li>
+                        <li><a href="signup.php">Sign Up</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                     </ul>
@@ -465,5 +464,12 @@
 <script src="js/bootstrap-slider.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/main.js"></script>
+<script src="css/animate/aos.js"></script>
+        <script>
+            AOS.init({
+                easing: 'ease-out-back',
+                duration: 3000
+            });
+        </script>
 </body>
 </html>
