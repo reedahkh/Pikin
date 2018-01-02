@@ -4,7 +4,7 @@ include("dbconnection.php");
 
 $ParentID = $_SESSION['ParentID'];
 if (!isset($ParentID)) {
-    header('Location:login.php');
+    header('Location:signin.php');
 }
     
     else {
