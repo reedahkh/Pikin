@@ -30,8 +30,13 @@
         else {
             $sqlx = "UPDATE parents SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['ParentID'] = $ParentID;
+                    $sql = "SELECT * FROM parents WHERE active='1' AND email='$email' AND hashkey='$hash'";
+                    $result = mysqli_query ($connection, $sql);
+                    while ($row = mysqli_fetch_assoc ($result)) {
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['ParentID'] = $row['ParentID'];
+                        
+                    }
                     header('location:setup.php');
                 
                 } 
