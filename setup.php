@@ -7,7 +7,7 @@ if (!isset($ParentID)) {
     header('Location:login.php');
 }
     else {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $phonenumber = $_POST['phonenumber'];

@@ -30,8 +30,14 @@
         else {
             $sqlx = "UPDATE educators SET active='1' WHERE email='$email'";
                 if ($connection->query($sqlx) === TRUE) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['EducatorID'] = $EducatorID;
+
+                    $sql = "SELECT * FROM educators WHERE active='1' AND email='$email' AND hashkey='$hash'";
+                    $result = mysqli_query ($connection, $sql);
+                    while ($row = mysqli_fetch_assoc ($result)) {
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['EducatorID'] = $row['EducatorID'];
+                        
+                    }
                     header('location:esetup.php');
                 
                 } 
