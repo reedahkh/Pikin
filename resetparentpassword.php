@@ -1,31 +1,9 @@
-<?php
-session_start();
-include("dbconnection.php");
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST ['email'];
-    $password = $_POST ['password'];
-    $sql = "SELECT * from coordinators where email = '$email' and password = 'SHA1 ($password)' ";
-    $result = mysqli_query ($connection, $sql);
-    if ($result->num_rows > 0){
-        while ($row = mysqli_fetch_assoc ($result)) {
-            $_SESSION['CoordinatorID'] = $row['CoordinatorID'];
-            $_SESSION['email'] = $row['email'];
-            header("Location:coordinator-member.php");
-        }
-    }   
-    else {
-        header('Location:csignin.php?loginFailed=true&reason=password'); 
-    }
-}
-?>
-
-
-<!doctype html> 
+<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-<title>Pikin</title>
+<title>Reset Password</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -53,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <img class="photo" src="images/person1.jpg" alt="">
                             <h4>Matthias Ehizua</h4>
                             <h5>Team Lead OAA Study</h5>
-                            <p>“I've been able to use this platform easily. And all promises Pikin has offered me as been fulfiled. They are a great team and their support system is really up to par!”</p>
+                            <p>“I've been able to use this platform easily. And all promises Pikin has offered me has been fulfiled. They are a great team and their support system is really up to par!”</p>
                         </div>
                     </div>
                     <div>
@@ -70,37 +48,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="form-holder">
             <div class="menu-holder">
                 <ul class="main-links">
-                    <li><a class="normal-link" href="csignup.php">Don’t have an account?</a></li>
-                    <li><a class="sign-button" href="csignup.php">Sign up</a></li>
+                    <li><a class="normal-link" href="signup.php">Don’t have an account?</a></li>
+                    <li><a class="sign-button" href="signup.php">Sign up</a></li>
                 </ul>
             </div>
+
             <div class="signin-signup-form">
                 <div class="form-items">
-                    <div class="form-title">Sign in to your account</div>
+                    <div class="form-title">Reset Password</div>
 
-                    <form id="signinform" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>">
+                    <form id="signinform" method="POST" action="resetpassword.php">
                         <div class="form-text">
                             <input type="text" name="email" placeholder="E-mail Address" required>
-                        </div>
-                        <div class="form-text">
-                            <input type="password" name="password" placeholder="Password" required>
-                        </div>
+                        </div>                                                
                         <div class="form-button">
-                            <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Sign in</button>
-                            <div class="menu-holder">
-                            <ul class="main-links" style="text-align: center;">
-                                <li><a class="normal-link" href="cpassword.php">Forgot Password? Click here</a></li>
-                            </ul>
-                        </div>
-                            
-                            <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
-
+                            <button id="submit" type="submit" name= "submit" class="ybtn ybtn-purple">Reset Password</button>
                             <?php 
-                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            $reasons = array("email" => "Sorry this email does not exist!", "blank" => "You have left one or more fields blank."); 
+                            if ($_GET["resetFailed"]){
+                                ?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            }
+                            
                             ?></font>
 
                         </div>
+
+                        <input type="hidden" value="parents" name="page" id="page">
                     </form>
                 </div>
             </div>

@@ -106,8 +106,9 @@
                         <span>near you!</span>
                     </div>
                     <div class="educators-search-holder" data-aos="fade-down">
-                        <form id="educators-search" action="search.php" method="POST">
+                        <form id="educators-search" action="listing.php" method="POST">
                             <input id="educators-text" type="text" name="postcode" placeholder="Search with postcode or surburb.." />
+                            <input id="educators-text" type="hidden" name="suburb" placeholder="Search with postcode or surburb.." />
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>

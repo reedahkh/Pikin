@@ -87,6 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="form-button">
                             <button id="submit" type="submit" name="submit" class="ybtn ybtn-purple">Sign in</button>
+                            <div class="menu-holder">
+                            <ul class="main-links" style="text-align: center;">
+                                <li><a class="normal-link" href="epassword.php">Forgot Password? Click here</a></li>
+                            </ul>
+                        </div>
                             
                             <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
 

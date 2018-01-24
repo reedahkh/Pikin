@@ -60,7 +60,7 @@ include ("dbconnection.php");
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="page-title">Family DayCare Educator Booking Service</div>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -132,7 +132,7 @@ $sql = "SELECT * from educators where postcode ='$postcode' or suburb = '$suburb
       <div class="col-md-2">
 
         <button class="btn btn-success pull-right" name="book"> <a href="booking.php?EducatorID=<?=$row['EducatorID']?>">
-          Book </a><i class="fa fa-check-circle" style="color: rgba(0,0,0,.4);"></i>
+          Book </a><i class="fa fa-check-circle" style="color: rgba(0,0,0,.4)"></i>
         </button>
       </div>
 <div class="clearfix"></div>
