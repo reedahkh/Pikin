@@ -1,5 +1,3 @@
-
-
 <?php
 	include("dbconnection.php");
 	require_once("class.phpmailer.php");
@@ -39,7 +37,7 @@
         			$resetlink = "http://pikin.com.au/newpassword.php?email=$email&hash=$hash";
 
         			
-        			if ($connection->query($queryString) === true ) {
+        			if ($connection->query($queryString) == true ) {
         				SendEmail($email, $resetlink);
             		}  
     			} 
