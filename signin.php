@@ -91,11 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <button id="submit" type="submit" name= "submit" class="ybtn ybtn-purple">Sign in</button>
                             <div class="menu-holder">
                             <ul class="main-links" style="text-align: center;">
-<<<<<<< HEAD
+
                                 <li><a class="normal-link" href="resetparentpassword.php">Forgot Password? Click here</a></li>
-=======
+
                                 <li><a class="normal-link" href="password.php">Forgot Password? Click here</a></li>
->>>>>>> eb3ae819556e5ea0fc473c8ec7f5d2f86424dbbb
                             </ul>
                         </div>
 

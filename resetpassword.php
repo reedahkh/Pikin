@@ -57,10 +57,10 @@
         		
         		if ($cresult->num_rows > 0){
         			$queryStringC = "INSERT INTO passwordReset (email, hashvalue) VALUES ('$email', '$hash')";
-        			$resetlink = "http://pikin.com.au/newpassword.php?email=$email&hash=$hash";
+        			$resetlink = "http://pikin.com.au/cnewpassword.php?email=$email&hash=$hash";
 
         			echo $resetlink;
-        			if ($connection->query($queryStringC) === true ) {
+        			if ($connection->query($queryStringC) == true ) {
         				SendEmail($email, $resetlink);
             		}
 			        
@@ -79,10 +79,10 @@
         		
         		if ($eresult->num_rows > 0){
         			$queryStringE = "INSERT INTO passwordReset (email, hashvalue) VALUES ('$email', '$hash')";
-        			$resetlink = "http://pikin.com.au/newpassword.php?email=$email&hash=$hash";
+        			$resetlink = "http://pikin.com.au/enewpassword.php?email=$email&hash=$hash";
 
         			echo $resetlink;
-        			if ($connection->query($queryStringE) === true ) {
+        			if ($connection->query($queryStringE) == true ) {
         				SendEmail($email, $resetlink);
             		}
 			        
