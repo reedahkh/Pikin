@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include ("dbconnection.php");
 ?>
@@ -14,7 +15,7 @@ include ("dbconnection.php");
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style2.css">
   <link rel="stylesheet" href="css/owl.carousel.css">
-  
+
   <!-- Google Font -->
   <link href='//fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
@@ -25,12 +26,12 @@ include ("dbconnection.php");
 
 <body>
 <div id="main-wrapper" class="listing right pull-right">
-  
+
   <!-- Start Header -->
   <header id="header">
     <div class="header-inner">
 
-      
+
 
       <div class="container">
 
@@ -64,7 +65,7 @@ include ("dbconnection.php");
           </div>
         </nav>
         <!-- End Utility Nav -->
-        
+
         <!-- Start Search Nav -->
         <nav class="search-nav">
           <button class="advanced-search-button">
@@ -91,7 +92,7 @@ include ("dbconnection.php");
               <a href="index.php"><img src="img/logo.png" alt="logo"></a>
           </div>
           <!-- End Logo -->
-          
+
 
           <!-- Start Search Nav Mobile -->
           <nav class="search-nav mobile col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
@@ -110,7 +111,7 @@ include ("dbconnection.php");
             </form>
           </nav>
           <!-- End Search Nav Mobile -->
-          
+
           <!-- Start Nav-Wrapper Mobile -->
           <nav class="nav-wrapper-mobile col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul class="utility-user custom-list">
@@ -119,7 +120,7 @@ include ("dbconnection.php");
                   <i class="fa fa-power-off"></i>
                   <span>Login</span>
                 </a>
-      
+
               </li>
 
               <li class="register">
@@ -137,7 +138,7 @@ include ("dbconnection.php");
 
         <!-- Responsive Menu Buttons -->
         <button class="search-toggle button"><i class="fa fa-search"></i></button>
-          
+
         <button class="navbar-toggle button"><i class="fa fa-bars"></i></button>
         <!-- End Responsive Menu Buttons -->
 
@@ -145,14 +146,14 @@ include ("dbconnection.php");
     </div>
   </header>
   <!-- End Header -->
-  
+
   <!-- Start Map-Wrapper -->
   <div class="map-wrapper" id="map">
 
     <!-- Start Map Search -->
     <div class="map-search">
       <div class="container">
-        
+
         <!-- Start Search-Shadow -->
         <div class="search-shadow"></div>
         <!-- End Search-Shadow -->
@@ -164,7 +165,7 @@ include ("dbconnection.php");
           </button>
         </span>
         <!-- End Select-Button -->
-        
+
         <p>Select this option button to redefine your search</p>
       </div>
 
@@ -182,7 +183,7 @@ include ("dbconnection.php");
                   <div id="slider-distance-search" class="slider"></div>
                 </div>
                 <div class="value-section">
-                  <input type="text" id="distance-search" class="value" readonly> 
+                  <input type="text" id="distance-search" class="value" readonly>
                 </div>
               </div>
 
@@ -207,7 +208,7 @@ include ("dbconnection.php");
                   </span>
                 </div>
               </div>
-      
+
               <div class="founded form-row clearfix">
                 <div class="label-section">
                   <label>Special Keywords:</label>
@@ -224,7 +225,7 @@ include ("dbconnection.php");
       <!-- End Advanced-Search-Inner -->
     </div>
     <!-- End Map Search -->
-    
+
     <!-- Start Map Canvas -->
     <div id="map_canvas_wrapper">
       <div id="map_canvas"></div>
@@ -237,16 +238,16 @@ include ("dbconnection.php");
     </div>
     <!-- End Map Control -->
 
-    
+
 
   </div>
   <!-- End Map-Wrapper -->
-  
+
   <!-- Start Main-Content -->
   <div id="listing-page" class="main-content">
     <div class="container">
-      
-    
+
+
       <!-- Start Page-Content -->
       <div class="page-content">
         <?php
@@ -259,7 +260,7 @@ include ("dbconnection.php");
           ?>
 
         <h5 class="listing-title">Showing <strong><?=$result->num_rows?></strong> results of Educators in: <strong><?=$postcode?></strong> &nbsp;</h5>
-        
+
         <div class="row">
           <?php
         while ($row = mysqli_fetch_assoc ($result)) {
@@ -269,16 +270,16 @@ include ("dbconnection.php");
               <?php
               $user_rating = $row['rating'];
 
-              for ($available_rating = 0; $available_rating < $user_rating; $available_rating++) { 
+              for ($available_rating = 0; $available_rating < $user_rating; $available_rating++) {
                 ?>
-              
+
                 <i class="fa fa-star" style="color: orange"></i>
                 <?php
               }
 
               $no_rating = 5 - $user_rating;
 
-              for ($absent_rating = 0; $absent_rating < $no_rating; $absent_rating++) { 
+              for ($absent_rating = 0; $absent_rating < $no_rating; $absent_rating++) {
                 ?>
                 <i class="fa fa-star" style="color: #ddd"></i>
                 <?php
@@ -315,12 +316,12 @@ include ("dbconnection.php");
     }
     else{
       header("location:index.php?NoCode=true&reason=blank");
-    } 
+    }
     ?>
         </div>
       </div>
       <!-- End Page-Content -->
-      
+
 
     </div>
   </div>
@@ -329,7 +330,7 @@ include ("dbconnection.php");
 
   <!-- Start Footer -->
   <footer id="footer">
-    
+
     <!-- End Container -->
 
     <!-- Start Footer Copyrights -->
@@ -364,6 +365,18 @@ include ("dbconnection.php");
 
 <!-- Scripts -->
 <script src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="https://raw.github.com/HPNeo/gmaps/master/gmaps.js"></script>
+<script async defer src="//maps.google.com/maps/api/js?key=AIzaSyBQtqo101Mtefpqv7JQOO3Y5Z9uqEnRuBU&callback=initMap" type="text/javascript"></script>
+<script src="js/gomap.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.tweet.js"></script>
+<script src="js/jflickrfeed.min.js"></script>
+<script src="js/jquery.matchHeight-min.js"></script>
+<script src="js/jquery.ba-outside-events.min.js"></script>
+<script src="js/gmap3.min.js"></script>
 <script>
       var map, infoWindow;
       function initMap() {
@@ -400,17 +413,7 @@ include ("dbconnection.php");
         infoWindow.open(map);
       }
     </script>
-<script async defer 
-src="//maps.google.com/maps/api/js?key=AIzaSyBQtqo101Mtefpqv7JQOO3Y5Z9uqEnRuBU&callback=initMap" type="text/javascript"></script>
-<script src="js/gomap.js"></script>
-<script src="js/scripts.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/jquery.tweet.js"></script>
-<script src="js/jflickrfeed.min.js"></script>
-<script src="js/jquery.matchHeight-min.js"></script>
-<script src="js/jquery.ba-outside-events.min.js"></script>
-<script src="js/gmap3.min.js"></script>
+
 
 
 
