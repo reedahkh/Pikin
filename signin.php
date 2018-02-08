@@ -12,9 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $row['email'];
             header("Location:pmember.php");
         }
-    }   
+    }
     else {
-        header('Location:signin.php?loginFailed=true&reason=password'); 
+        header('Location:signin.php?loginFailed=true&reason=password');
     }
 }
 ?>
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-text">
                             <input type="password" name="password" placeholder="Password" required>
                         </div>
-                        
+
                         <div class="form-button">
                             <button id="submit" type="submit" name= "submit" class="ybtn ybtn-purple">Sign in</button>
                             <div class="menu-holder">
@@ -98,12 +98,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </ul>
                         </div>
 
-                            
+
                             <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
 
-                            <?php 
-                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            <?php
+                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank.");
+                            if (isset($_GET["loginFailed"])) {
+                                if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]];
+                            }
                             ?></font>
 
                         </div>
@@ -120,4 +122,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="js/main.js"></script>
 </body>
 </html>
-

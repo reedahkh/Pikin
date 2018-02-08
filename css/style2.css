@@ -14,6 +14,11 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.container-fluid {
+    padding: 10px 35px !important;
+}
+
 @media (min-width: 768px) {
   .col-sm-2-4 {
     float: left;
@@ -282,7 +287,7 @@ th {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 640px !important;
   }
 }
 .container-fluid {
@@ -6185,7 +6190,8 @@ button:focus {
 .overlay img {
   display: block;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  max-height: 165px !important;
 }
 .overlay .overlay-shadow {
   position: absolute;

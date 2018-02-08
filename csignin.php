@@ -12,15 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $row['email'];
             header("Location:coordinator-member.php");
         }
-    }   
+    }
     else {
-        header('Location:csignin.php?loginFailed=true&reason=password'); 
+        header('Location:csignin.php?loginFailed=true&reason=password');
     }
 }
 ?>
 
 
-<!doctype html> 
+<!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -92,12 +92,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <li><a class="normal-link" href="cpassword.php">Forgot Password? Click here</a></li>
                             </ul>
                         </div>
-                            
+
                             <!--i've added a php code here to authenticate incorrect password/email combination on this page-->
 
-                            <?php 
-                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank."); 
-                            if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            <?php
+                            $reasons = array("password" => "Incorrect Email or Password", "blank" => "You have left one or more fields blank.");
+                            if (isset($_GET["loginFailed"])) {
+                                if ($_GET["loginFailed"])?> <font color="red"><?php echo $reasons[$_GET["reason"]]; 
+                            }
+
                             ?></font>
 
                         </div>
@@ -114,4 +117,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="js/main.js"></script>
 </body>
 </html>
-

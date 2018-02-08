@@ -37,17 +37,17 @@
                                     <a href="#pricing">Options <i class="fa fa-caret-down"></i></a>
                                     <ul class="dropdown-menu dropdown-mega">
                                         <li>
-                                            <div class="container"> 
+                                            <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <a class="mega-link" href="cloudhosting.html">
                                                             <div class="mega-box m-color1">
-                                                                
+
                                                                 <div class="mega-title">
                                                                     Family DayCare Educator Booking Service
                                                                 </div>
                                                                 <div class="mega-details">
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -55,7 +55,7 @@
                                                     <div class="col-md-4">
                                                         <a class="mega-link" href="webhosting.html">
                                                             <div class="mega-box m-color2">
-                                                                
+
                                                                 <div class="mega-title">
                                                                     Partnership
                                                                 </div>
@@ -68,7 +68,7 @@
                                                     <div class="col-md-4">
                                                         <a class="mega-link" href="about.html">
                                                             <div class="mega-box m-color3">
-                                                                
+
                                                                 <div class="mega-title">
                                                                     Centers
                                                                 </div>
@@ -112,14 +112,14 @@
                             <span class="inline-button">
                                 <input id="search-btn" type="submit" name="search" value="search">
                             </span>
-                            <?php 
-                            $reasons = array("wrongarea" => "Sorry Suburb/Postcode is Not Available!", "blank" => "Please Enter a Valid Postcode/Suburb!"); 
-                            
+                            <?php
+                            $reasons = array("wrongarea" => "Sorry Suburb/Postcode is Not Available!", "blank" => "Please Enter a Valid Postcode/Suburb!");
+
                             if(isset($_GET["NoCode"])){
-                                
-                                if($_GET["NoCode"]) ?> 
-                                <font color="red"><?php echo $reasons[$_GET["reason"]]; 
-                                
+
+                                if($_GET["NoCode"]) ?>
+                                <font color="red"><?php echo $reasons[$_GET["reason"]];
+
                             }?></font>
                         </form>
                     </div>
@@ -151,7 +151,7 @@
         <div class="row">
             <?php
                 include ("dbconnection.php");
-                
+
                 $popular = "SELECT * from educators LIMIT 3";
                 $query = mysqli_query ($connection, $popular);
 
@@ -173,15 +173,15 @@
                                   <?php
                                     $user_rating = $row['rating'];
 
-                                    for ($available_rating = 0; $available_rating < $user_rating; $available_rating++) { 
+                                    for ($available_rating = 0; $available_rating < $user_rating; $available_rating++) {
                                   ?>
                                   <i class="fa fa-star" style="color: orange"></i>
                                   <?php
                                     }
 
                                     $no_rating = 5 - $user_rating;
-                                    
-                                    for ($absent_rating = 0; $absent_rating < $no_rating; $absent_rating++) { 
+
+                                    for ($absent_rating = 0; $absent_rating < $no_rating; $absent_rating++) {
                                   ?>
                                   <i class="fa fa-star" style="color: #ddd"></i>
                                   <?php
@@ -211,7 +211,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="info-text">We have two options to help: Vacancy Alert Pro which leaves the hard work to us and ensures you are first in line when a spot becomes available or our free Child Care Vacancy Alert service which lets child care providers contact you if a vacancy arises.</div>
-                
+
                 <a href="signup.php" class="ybtn ybtn-purple ybtn-shadow">Parents Sign Up Here</a>
                 <a href="signin.php" class="ybtn ybtn-white ybtn-shadow">Login </a>
             </div>
@@ -441,7 +441,7 @@
                     <div class="phone"><i class="fa fa-phone"></i>+61-411-240-300</div>
                     <div class="email"><i class="fa fa-envelope"></i> info@pikin.com.au</div>
                     <div class="address">
-                        <i class="fa fa-map-marker"></i> 
+                        <i class="fa fa-map-marker"></i>
                         <div>City Avenue, Office 64,<br>
                             Floor 6,  Milbourne,<br>
                             Australia.</div>
