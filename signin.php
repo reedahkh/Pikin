@@ -93,8 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <ul class="main-links" style="text-align: center;">
 
                                 <li><a class="normal-link" href="resetparentpassword.php">Forgot Password? Click here</a></li>
-
-                                <li><a class="normal-link" href="password.php">Forgot Password? Click here</a></li>
                             </ul>
                         </div>
 
