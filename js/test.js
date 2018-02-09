@@ -54,6 +54,14 @@ function codeAddress(cdata) {
         strong.textContent = data.firstname + " " + data.lastname + " " + "; "+ data.address;
         content.appendChild(strong);
 
+        var place = {};
+        place.destlat = data.lat;
+        place.destlng = data.lng;
+        place.originlat = -31.8747404;
+        place.originlng = 121.21553570000003;
+
+        makeCall (place);
+
         var img = document.createElement('img');
         img.src = 'images/'+data.avatar;
         img.style.width = '50px';
@@ -81,4 +89,18 @@ function codeAddress(cdata) {
               console.log(res)
           }
       })
+  }
+
+
+  function makeCall (place) {
+    $.ajax({
+        type: "GET",
+        url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+place.originlat+","+place.originlng+"&destinations="+place.destlat+","+place.destlng+"&key=AIzaSyBQtqo101Mtefpqv7JQOO3Y5Z9uqEnRuBU",
+        data: place,
+        success: function (res) {
+            var response = res;
+            var distance = response['rows'][0]['elements'][0]['duration']['value'];
+            var distanceInKm = distance / 1000;
+        }
+    });
   }

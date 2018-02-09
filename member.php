@@ -2,6 +2,8 @@
 session_start();
 include("dbconnection.php"); //creates database connection
 $email = $_SESSION['email'];
+// $email = "fareedakabeer@gmail.com";
+
 if (!isset($email)) {
   header('Location:signin.php');
 }
@@ -9,12 +11,13 @@ else {
   $query = "SELECT * FROM parents WHERE email = '$email'";
   $userdetails =  mysqli_query ($connection, $query);
   $data = mysqli_fetch_assoc($userdetails);
-  
+
   $firstname = $data["firstname"];
   $lastname = $data["lastname"];
   $email = $data["email"];
   $paymentmethod = $data["paymentmethod"];
   $image = $data["image"];
+
 }
 ?>
 
@@ -51,20 +54,20 @@ else {
 <body>
 
 <!-- Page Wrapper -->
-<div id="wrap"> 
-  
-  
-  
+<div id="wrap">
+
+
+
   <!-- Content -->
   <main class="cd-main-content">
     <div id="content">
       <!-- TOP HEAD -->
           <div class="top-head" style="margin: 0px; background: white; padding: 10px 0px;">
-        <div class="container" style=""> 
+        <div class="container" style="">
             <div class="row">
               <div class="col-md-12">
                 <h4></h4> <img src="img/logo.png" class="img-responsive" alt="" style="width: 110px">
-                <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a> 
+                <a href="logout.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px">Logout <i class="fa fa-power-off" style="margin-left: 5px"></i> </a>
                 <a href="index.php" class="pull-right" style="color: black; background: #f5f5f5; margin-top: 12px" target="_blank" >Home <i class="fa fa-home" style="margin-left: 5px"></i> </a> </div>
               <div class="col-sm-6 hidden"> <a id="cd-menu-trigger" href="#0"><span class="cd-menu-icon"></span></a> </div>
             </div>
@@ -72,10 +75,10 @@ else {
           </div>
       <div class="resume" style="padding-top: 20px;">
 
-        <div class="container" style=""> 
-          
+        <div class="container" style="">
+
          <div class="col-md-12" style="padding: 0px">
-            <div class="side-bar" style=""> 
+            <div class="side-bar" style="">
            <div class="col-md-3" style="padding: 0px">
             <div style="padding: 30px">
                 <img src="images/<?php echo $data["image"]; ?>" class="img-responsive" alt="" style="border-radius: 5px">
@@ -118,13 +121,13 @@ else {
           <br>
           <br>
           <!-- Resume -->
-          <div class="row"> 
+          <div class="row">
 
             <!-- MAIN CONTENT -->
-            <div class="col-md-12"> 
-              
-              <!-- NAV LINKS -->              
-              <nav> 
+            <div class="col-md-12">
+
+              <!-- NAV LINKS -->
+              <nav>
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-tabis" aria-expanded="false"> <span class="tittle">MENU</span> <span class="fa fa-navicon icon-nav"></span> </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -132,58 +135,58 @@ else {
                   <ul class="isop-filter nav nav-pills">
 
                     <li role="presentation" class="active"><a href="#about-me" aria-controls="about-me" role="tab" data-toggle="tab"> MY ACCOUNT &nbsp; &nbsp;<i class="fa fa-id-badge" style="opacity: .7"></i></a></li>
-                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"> 
+                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">
                        EDIT PROFILE &nbsp; &nbsp;<i class="fa fa-pencil" style="opacity: .7"></i></a></li>
                   </ul>
                 </div>
               </nav>
               <!-- NAV LINKS END -->
-              
-              
-              
-              <div class="tab-content"> 
-                
+
+
+
+              <div class="tab-content">
+
                 <!-- ABOUT ME -->
                 <div role="tabpanel" class="tab-pane fade in active" id="about-me">
-                  <div class="inside-sec"> 
+                  <div class="inside-sec">
                     <!-- BIO AND SKILLS -->
                     <h5 class="tittle" style="font-weight: normal;"><?=$firstname?>'s Account Details</h5>
-                    
+
                     <!-- Blog -->
-                    <section class="about-me padding-top-10"> 
-                      
+                    <section class="about-me padding-top-10">
+
                       <!-- Personal Info -->
                       <ul class="personal-info">
                         <li>
-                          <p> <span> Acct Type</span> <?=$data['account_type']?> </p>
+                          <p> <span> Acct Type</span>  </p>
                         </li>
                         <li>
-                          <p> <span> Acct Form</span> <?=$data['account_form']?> </p>
+                          <p> <span> Acct Form</span>  </p>
                         </li>
                       </ul>
-                      
-                      
-                      
+
+
+
                       <!-- Skills -->
                       <h5 class="tittle" style="font-weight: normal;">More Details</h5>
-                      
+
                       <!-- Sound Engineering -->
                       <div class="panel-group accordion padding-20" id="accordion">
                         <div class="panel panel-default">
                           <div class="row">
-                            <div class="col-sm-4"> 
+                            <div class="col-sm-4">
                               <!-- PANEL HEADING -->
                               <div class="">
                                 <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed"> Account Usage</a> </h4>
                               </div>
                             </div>
-                            
+
                             <!-- Skillls Bars -->
                             <div class="col-sm-8">
                               <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"> <span class="sr-only">60% Complete</span> </div>
                               </div>
-                              
+
                               <!-- Skillls Text -->
                               <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="panel-body">
@@ -193,111 +196,111 @@ else {
                             </div>
                           </div>
                         </div>
-                        
+
                       </div>
                     </section>
                   </div>
                 </div>
-                
+
                 <!-- RESUME -->
                 <div role="tabpanel" class="tab-pane fade" id="resume">
-                  <div class="inside-sec"> 
+                  <div class="inside-sec">
                     <!-- BIO AND SKILLS -->
-                    
+
                     <div class="bio-info padding-30">
-                      
-                      <div class="skills"> 
-                        
-                        
+
+                      <div class="skills">
+
+
                     </div>
                   </div>
-                  
+
                   <!-- Professional Experience -->
-                  <div class="inside-sec margin-top-30"> 
+                  <div class="inside-sec margin-top-30">
                     <!-- Professional Experience -->
                     <h5 class="tittle">Most Recent Payments Into Account</h5>
-                    <div class="padding-30 exp-history"> 
-                      
+                    <div class="padding-30 exp-history">
+
                       <!-- Wordpress Developer -->
                       <div class="exp">
                         <div class="media-left"> <span class="sun">October 2017</span> </div>
-                        <div class="media-body"> 
-                          
+                        <div class="media-body">
+
                           <!-- COmpany Logo -->
                           <div class="company-logo"> <img src="" alt="" > </div>
                           <h6>$10,000</h6>
                           <p>Basic Salary</p>
                           <p>United States Goverment</p>
-                          
+
                         </div>
                       </div>
-                      
+
                       <div class="exp">
                         <div class="media-left"> <span class="sun">October 2017</span> </div>
-                        <div class="media-body"> 
-                          
+                        <div class="media-body">
+
                           <!-- COmpany Logo -->
                           <div class="company-logo"> <img src="" alt="" > </div>
                           <h6>$2,000</h6>
                           <p>Allowance</p>
                           <p>United States Government</p>
-                          
+
                         </div>
                       </div>
 
                       <div class="media-left"> <span class="sun">September 2017</span> </div>
-                        <div class="media-body"> 
-                          
+                        <div class="media-body">
+
                           <!-- COmpany Logo -->
                           <div class="company-logo"> <img src="" alt="" > </div>
                           <h6>$10,000</h6>
                           <p>Basic Salary</p>
                           <p>United States Goverment</p>
-                          
+
                         </div>
                       </div>
 
                     </div>
 
-                  </div>  
-                  
+                  </div>
+
                   <!-- Academic Background -->
-                  <div class="inside-sec margin-top-30"> 
+                  <div class="inside-sec margin-top-30">
                     <!-- Academic Background -->
                     <h5 class="tittle">Most Recent Withdrawals Made</h5>
-                    <div class="padding-30 exp-history"> 
-                      
+                    <div class="padding-30 exp-history">
+
                       <!-- Wordpress Developer -->
                       <div class="exp">
                         <div class="media-left"> <span class="sun"></span> </div>
-                        <div class="media-body"> 
+                        <div class="media-body">
                           <!-- COmpany Logo -->
                           <div class="company-logo"> <span class="diploma"> </span> </div>
                           <h6></h6>
                           <p>M</p>
                           <p></p>
-                          
+
                         </div>
                       </div>
-                      
+
                       <!-- html5 and css3 Developer -->
-                      
+
                     </div>
                   </div>
                 </div>
-                
+
                 <!-- PORTFOLIO -->
                 <div role="tabpanel" class="tab-pane fade" id="portfolio">
-                  <div class="inside-sec"> 
+                  <div class="inside-sec">
                     <!-- BIO AND SKILLS -->
                     <h5 class="tittle">PORTFOLIO</h5>
-                    
+
                     <!-- PORTFOLIO -->
-                    <section class="portfolio padding-top-50 padding-bottom-50"> 
-                      <!-- Work Filter --> 
+                    <section class="portfolio padding-top-50 padding-bottom-50">
+                      <!-- Work Filter -->
                       <!-- PORTFOLIO ITEMS -->
-                      <div id="Container" class="item-space row col-3"> 
-                        
+                      <div id="Container" class="item-space row col-3">
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-1.jpg"> </a>
@@ -310,7 +313,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-photography pf-branding-design">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-2.jpg"> </a>
@@ -323,7 +326,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design pf-branding-design">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-3.jpg"> </a>
@@ -336,7 +339,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design pf-digital-art ">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-4.jpg"> </a>
@@ -349,7 +352,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-branding-design pf-digital-art">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-5.jpg"> </a>
@@ -362,7 +365,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-design pf-digital-art">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-9.jpg"> </a>
@@ -375,7 +378,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design pf-branding-design">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-7.jpg"> </a>
@@ -388,7 +391,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design pf-digital-art ">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-8.jpg"> </a>
@@ -401,7 +404,7 @@ else {
                             </div>
                           </div>
                         </article>
-                        
+
                         <!-- ITEM -->
                         <article class="portfolio-item mix pf-web-design pf-branding-design">
                           <div class="portfolio-image"> <a href="#."> <img class="img-responsive" alt="Open Imagination" src="images/portfolio/5/img-9.jpg"> </a>
@@ -418,16 +421,16 @@ else {
                     </section>
                   </div>
                 </div>
-                
+
                 <!-- BLOG -->
                 <div role="tabpanel" class="tab-pane fade" id="blog">
-                  <div class="inside-sec"> 
+                  <div class="inside-sec">
                     <!-- BIO AND SKILLS -->
                     <h5 class="tittle">BLOG</h5>
-                    
+
                     <!-- Blog -->
-                    <section class="blog blog-page padding-20 padding-top-50 padding-bottom-50 "> 
-                      
+                    <section class="blog blog-page padding-20 padding-top-50 padding-bottom-50 ">
+
                       <!-- Blog Post -->
                       <article> <img class="img-responsive" src="images/blog-img-1.jpg" alt="" >
                         <div class="post-info">
@@ -438,7 +441,7 @@ else {
                             <a href="#." class="btn-1">Read MOre <i class="fa fa-angle-right"></i></a> </div>
                         </div>
                       </article>
-                      
+
                       <!-- BLOG POST -->
                       <article> <img class="img-responsive" src="images/blog-img-2.jpg" alt="" >
                         <div class="post-info">
@@ -449,9 +452,9 @@ else {
                             <a href="#." class="btn-1">Read MOre <i class="fa fa-angle-right"></i></a> </div>
                         </div>
                       </article>
-                      
+
                       <!-- BLOG POST -->
-                      
+
                       <article> <img class="img-responsive" src="images/blog-img-3.jpg" alt="" >
                         <div class="post-info">
                           <div class="post-in">
@@ -461,7 +464,7 @@ else {
                             <a href="#." class="btn-1">Read MOre <i class="fa fa-angle-right"></i></a> </div>
                         </div>
                       </article>
-                      
+
                       <!-- Pagination -->
                       <ul class="pagination">
                         <li><a href="#">1</a></li>
@@ -472,22 +475,22 @@ else {
                     </section>
                   </div>
                 </div>
-                
+
                 <!-- Contact -->
                 <div role="tabpanel" class="tab-pane fade" id="contact">
-                  <div class="inside-sec"> 
-                     
-                      
-                      
+                  <div class="inside-sec">
+
+
+
                       <!-- Contact  -->
                       <h5 class="tittle" style="font-weight: normal;">EDIT PROFILE</h5>
-                      <div class="contact style-3 light-border padding-top-50 padding-bottom-50 padding-left-20 padding-right-20"> 
-                        
+                      <div class="contact style-3 light-border padding-top-50 padding-bottom-50 padding-left-20 padding-right-20">
+
                         <!-- Form  -->
-                        <div class="contact-right"> 
+                        <div class="contact-right">
                           <!-- Success Msg -->
                           <div id="contact_message_1" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Success</div>
-                          
+
                           <!-- FORM -->
                           <form role="form" id="contact_form_1" class="contact-form" method="post" onSubmit="return false">
                             <ul class="row">
@@ -537,28 +540,28 @@ else {
       </div>
     </div>
   </main>
-  <!-- End Content --> 
-  
+  <!-- End Content -->
+
   <!-- Footer -->
   <footer class="footer">
     <div class="rights">
       <p>© Copyright 2017 Pikin. All right reserved.</p>
     </div>
   </footer>
-  <!-- End Footer --> 
-  
+  <!-- End Footer -->
+
 </div>
-<!-- End Page Wrapper --> 
+<!-- End Page Wrapper -->
 
-<!-- JavaScripts --> 
-<script src="js/vendors/jquery/jquery.min.js"></script> 
-<script src="js/vendors/bootstrap.min.js"></script> 
-<script src="js/vendors/owl.carousel.min.js"></script> 
-<script src="js/vendors/jquery.isotope.min.js"></script> 
-<script src="js/main.js"></script> 
+<!-- JavaScripts -->
+<script src="js/vendors/jquery/jquery.min.js"></script>
+<script src="js/vendors/bootstrap.min.js"></script>
+<script src="js/vendors/owl.carousel.min.js"></script>
+<script src="js/vendors/jquery.isotope.min.js"></script>
+<script src="js/main.js"></script>
 
-<!-- Begin Map Script--> 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> 
+<!-- Begin Map Script-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 <script src="js/vendors/map.js"></script>
 </body>
 </html>
